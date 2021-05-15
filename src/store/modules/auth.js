@@ -13,7 +13,7 @@ export default {
  },
  actions: {
   async loginTutor(context, payload) {
-    const response = await fetch('http://localhost:5000/api/tutor/login', {
+    const response = await fetch('https://private-tutoring-backend.herokuapp.com/api/tutor/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export default {
     });
   },
   async loginAdmin(context, payload) {
-    const response = await fetch('http://localhost:5000/api/admin/login', {
+    const response = await fetch('https://private-tutoring-backend.herokuapp.com/api/admin/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

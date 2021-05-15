@@ -127,7 +127,7 @@ export default {
       }
     },
     async sendEmail(tutor) {
-      await axios.put('http://localhost:5000/api/admin/send-email', {
+      await axios.put('https://private-tutoring-backend.herokuapp.com/api/admin/send-email', {
         email: tutor.email
       }).then(() => {
        this.$toast('Verify Email Send to ' + tutor.fullName + '!', {
@@ -171,7 +171,7 @@ export default {
         
     },
     async updateTutor(tutor) {
-      await axios.put(`http://localhost:5000/api/admin/read-to-true/${tutor._id}`)
+      await axios.put(`https://private-tutoring-backend.herokuapp.com/api/admin/read-to-true/${tutor._id}`)
     }
   },
   computed: {

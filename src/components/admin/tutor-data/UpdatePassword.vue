@@ -41,7 +41,7 @@ export default {
   methods: {
     async handleUpdatePassword() {
       if(this.newPassword == this.confirmPassword) {
-        await axios.put("http://localhost:5000/api/admin/update-password/" + this.tutor._id, {
+        await axios.put("https://private-tutoring-backend.herokuapp.com/api/admin/update-password/" + this.tutor._id, {
       password: this.newPassword
      }).then(() => {
        this.$toast('Password Update Successed!', {

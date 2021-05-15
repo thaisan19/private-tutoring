@@ -119,7 +119,7 @@ export default {
  },
  data() {
   return {
-   uri: 'http://localhost:5000/api/course/',
+   uri: 'https://private-tutoring-backend.herokuapp.com/api/course/',
    name: '',
    createdBy: '',
    courseLength: '',

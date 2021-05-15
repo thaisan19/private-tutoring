@@ -10,13 +10,13 @@ export default {
  },
  actions: {
   async getRequests(context)  {
-   await axios.get('http://localhost:5000/api/request/get-reqs')
+   await axios.get('https://private-tutoring-backend.herokuapp.com/api/request/get-reqs')
    .then(res => {
     context.commit('SET_REQUESTS', res.data)
    })
   },
   async getUnreadReqs(context) {
-   await axios.get('http://localhost:5000/api/request/unread')
+   await axios.get('https://private-tutoring-backend.herokuapp.com/api/request/unread')
    .then(res => {
     context.commit('SET_UNREAD_REQS', res.data)
    })

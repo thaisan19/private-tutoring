@@ -197,7 +197,7 @@ export default {
     if(localStorage.getItem('userId') !== null) {
       this.userId = localStorage.getItem('userId')
 
-      axios.get(`http://localhost:5000/api/tutor/find-tutor/${this.userId}`)
+      axios.get(`https://private-tutoring-backend.herokuapp.com/api/tutor/find-tutor/${this.userId}`)
         .then((res) => this.activeTutor = res.data)
     }
   },

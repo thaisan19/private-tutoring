@@ -219,7 +219,7 @@ export default {
   },
  data() {
   return {
-   uri: 'http://localhost:5000/api/admin',
+   uri: 'https://private-tutoring-backend.herokuapp.com/api/admin',
    fullName: '',
    monthlyRate: '',
    email: '',
@@ -281,7 +281,7 @@ export default {
         formData.append("tutoringHours", this.hours[i])
       }
 
-     await axios.put(`http://localhost:5000/api/admin/update/${this.tutor._id}`, formData, {
+     await axios.put(`https://private-tutoring-backend.herokuapp.com/api/admin/update/${this.tutor._id}`, formData, {
      }).then(() => {
        this.$toast(this.fullName + ' Edit Successed!', {
          duration: 3000,

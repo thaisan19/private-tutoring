@@ -17,7 +17,7 @@
         class="tutor-list"
         >
         <div class="tutor-profile-img">
-          <img :src="`http://localhost:5000/${tutor.profile[0].path}`">
+          <img :src="`https://private-tutoring-backend.herokuapp.com/${tutor.profile[0].path}`">
         </div>
         <div class="tutor-desc">
           <h1>{{ tutor.fullName }} <span v-if="isMobile">- ${{ tutor.monthlyRate }}</span></h1>

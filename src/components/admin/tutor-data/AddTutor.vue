@@ -257,7 +257,7 @@ export default {
         formData.append("tutoringHours", this.hours[i])
       }
 
-      await axios.post('http://localhost:5000/api/admin/register-tutor', formData, {
+      await axios.post('https://private-tutoring-backend.herokuapp.com/api/admin/register-tutor', formData, {
       }).then(() => {
         this.$toast("You Have Been Registered " + this.fullName + ' As a New Tutor 👏 We Will Get Back To You Very Soon 🤗🙏', {
          duration: 3000,

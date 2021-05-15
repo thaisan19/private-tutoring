@@ -150,7 +150,7 @@ export default {
       }
     },
     async deleteCourse(course) {
-      await axios.delete(`http://localhost:5000/api/course/delete/${course.id}`)
+      await axios.delete(`https://private-tutoring-backend.herokuapp.com/api/course/delete/${course.id}`)
       .then(() => {
        this.$toast(course.name + ' has been deleted!', {
          duration: 3000,

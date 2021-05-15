@@ -158,7 +158,7 @@ export default {
       }
     },
     async deleteTutor(tutor) {
-      await axios.delete(`http://localhost:5000/api/admin/delete/${tutor.id}`)
+      await axios.delete(`https://private-tutoring-backend.herokuapp.com/api/admin/delete/${tutor.id}`)
        this.$toast(tutor.fullName + ' has been deleted!', {
          duration: 2000,
          slotLeft: `🚫`,
