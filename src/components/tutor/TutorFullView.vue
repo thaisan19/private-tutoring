@@ -200,6 +200,15 @@ export default {
 </script>
 
 <style scoped>
+.tutor-full-view-title,
+.tutor-full-view-row01,
+.tutor-full-view-row02,
+.tutor-full-view-row03,
+.tutor-full-view-row04,
+.tutor-full-view-row05 {
+  position: relative;
+  z-index: 1000;
+}
   .tutor-full-view::before {
     content: "";
     background: url('../../assets/background-pattern-vertical.png');
