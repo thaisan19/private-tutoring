@@ -101,7 +101,7 @@ export default {
        pickedTutoringHours: this.pickedTutoringHours,
        read: false
      })
-       this.$toast('Request Send! We will get back to you soon 👏', {
+       return this.$toast('Request Send! We will get back to you soon 👏', {
          duration: 3000,
          slotLeft: `🎉`,
          slotRight: `🎊`,
@@ -118,9 +118,9 @@ export default {
          positionY: 'top',
          disableClick: false
        })
-        setTimeout(() =>{
-          this.$router.go('/Tutors')
-        }, 2000);
+        // setTimeout(() =>{
+        //   this.$router.go('/Tutors')
+        // }, 2000);
      } else {
         this.$toast('✋ Please fill in all the information, at least pick one DAY and HOUR 🙏', {
          duration: 3000,
@@ -138,7 +138,7 @@ export default {
          positionX: 'center',
          positionY: 'top',
          disableClick: false
-     })
+       })
      }
    }
  }
