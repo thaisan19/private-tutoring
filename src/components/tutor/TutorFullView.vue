@@ -296,8 +296,8 @@ export default {
   }
   .full-view-action {
     position: absolute;
-    top: 1.5em;
-    right: 1em;
+    top: .7em;
+    right: .5em;
     display: flex;
     flex-direction: column;
   }

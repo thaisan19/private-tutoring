@@ -97,7 +97,7 @@ export default {
  },
  methods: {
     nextPage() {
-     if((this.currentPage*this.pageSize) < this.filteredTutor.length) this.currentPage++;
+     if((this.currentPage*this.pageSize) < this.filteredRequests.length) this.currentPage++;
     },
     prevPage() {
      if(this.currentPage > 1) this.currentPage--;
@@ -117,7 +117,7 @@ export default {
       }
     },
     async deleteRequest(request) {
-      await axios.delete('https://private-tutoring-backend.herokuapp.com/api/request/delete/' + request._id)
+      await axios.delete('http://localhost:5000/api/request/delete/' + request._id)
       .then(() => {
        this.$toast('Deleted request from ' + request.studentName, {
          duration: 3000,
@@ -161,7 +161,7 @@ export default {
         
     },
     updateRequest(request) {
-      axios.put(`https://private-tutoring-backend.herokuapp.com/api/request/update/${request._id}`, request)
+      axios.put(`http://localhost:5000/api/request/update/${request._id}`, request)
     }
   },
   computed: {
