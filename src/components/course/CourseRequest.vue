@@ -11,7 +11,7 @@
     <p>Course ID: <strong>#{{ course.id }}</strong> | Course Price: <strong>${{ course.price }}</strong></p>
     <h1>{{ course.name }}</h1>
    </div>
-   <form @submit.prevent="handleRequest">
+   <form @submit.prevent="handleCourseRequest">
         <div class="course-request-row01">
     <div>
       <label for="name">🧑 Student Name:</label>
@@ -87,7 +87,7 @@ export default {
    }
  },
  methods: {
-   async handleRequest() {
+   async handleCourseRequest() {
 
      if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
        await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/add', {
