@@ -87,8 +87,25 @@ export default {
  },
  methods: {
    async handleRequest() {
-
-     if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
+     if(!this.studentName.length && !this.studentEmail.length && !this.studentPhoneNumber.length && !this.pickedTutoringDays.length && !this.pickedTutoringHours.length) {
+       this.$toast('✋ Please fill in all the information, at least pick one DAY and HOUR 🙏', {
+         duration: 3000,
+         slotLeft: `💥`,
+         slotRight: `❗❕`,
+         styles: {
+           borderRadius: '0px',
+           backgroundColor: 'var(--red)',
+           color: '#fff',
+           borderColor: 'var(--black)',
+           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
+           border: '3px solid var(--black)'
+         },
+         class: 'local-class',
+         positionX: 'center',
+         positionY: 'top',
+         disableClick: false
+       })
+     } else {
        await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/add', {
        title: "Tutor Request",
        objId: this.tutor.id,
@@ -119,29 +136,10 @@ export default {
          positionY: 'top',
          disableClick: false
        })
-     }
-     )
         // setTimeout(() =>{
         //   this.$router.go('/Tutors')
         // }, 2000);
-     } else {
-        this.$toast('✋ Please fill in all the information, at least pick one DAY and HOUR 🙏', {
-         duration: 3000,
-         slotLeft: `💥`,
-         slotRight: `❗❕`,
-         styles: {
-           borderRadius: '0px',
-           backgroundColor: 'var(--red)',
-           color: '#fff',
-           borderColor: 'var(--black)',
-           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
-           border: '3px solid var(--black)'
-         },
-         class: 'local-class',
-         positionX: 'center',
-         positionY: 'top',
-         disableClick: false
-       })
+     })
      }
    }
  }
