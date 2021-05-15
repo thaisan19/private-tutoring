@@ -1,0 +1,416 @@
+/* custom font */
+@import url("https://fonts.googleapis.com/css2?family=Ubuntu:wght@300;400;500;700&display=swap");
+
+/* root variables */
+:root {
+  --white: #fbfffe;
+  --blue: #2c39f2;
+  --red: #ff0008;
+  --black: #1b1b1e;
+  --yellow: #faa916;
+}
+
+/* base styles */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Ubuntu", sans-serif;
+  scroll-behavior: smooth;
+}
+body {
+  background: var(--white);
+}
+a {
+  text-decoration: none;
+}
+ul {
+  list-style: none;
+}
+
+/* form */
+/* form {
+  max-width: 70%;
+  margin: 0 auto;
+  padding: 20px;
+  border: 2.5px solid var(--black);
+  background: var(--white);
+} */
+input,
+textarea {
+  border: 0;
+  border: 2px solid var(--black);
+  padding: 10px;
+  align-items: center;
+  outline: none;
+  width: 100%;
+  box-sizing: border-box;
+  margin: 10px auto;
+}
+textarea {
+  display: block;
+  width: 100%;
+  overflow: auto;
+  resize: vertical;
+  min-height: 8em;
+  line-height: 1.5em;
+}
+
+/* pill style  */
+.pill {
+  display: inline-block;
+  padding: 0.5em;
+  background: var(--white);
+  box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.1);
+  /* border: 2px solid var(--black); */
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  margin-right: 0.5em;
+}
+
+/* error text */
+.error {
+  color: var(--red);
+  font-size: 14px;
+  margin: 16px 0;
+}
+
+/* checkbox style */
+.container {
+  position: relative;
+  padding-left: 1.7em;
+  padding-bottom: 0.5em;
+  cursor: pointer;
+  font-size: 1.2em;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+.container input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 1em;
+  width: 1em;
+  background-color: #fff;
+  border: 2px solid var(--black);
+}
+.container:hover input ~ .checkmark {
+  background-color: #f3f2f2;
+}
+
+/* When the checkbox is checked, add a blue background */
+.container input:checked ~ .checkmark {
+  background-color: var(--blue);
+}
+
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkbox {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+.checkbox > label:not(:last-child) {
+  padding-right: 1em;
+}
+.checkmark:after {
+  content: "";
+  position: absolute;
+  display: none;
+}
+
+/* Show the checkmark when checked */
+.container input:checked ~ .checkmark:after {
+  display: block;
+}
+
+/* Style the checkmark/indicator */
+.container .checkmark:after {
+  content: "📌";
+}
+
+/* custom input file */
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: "Select an file";
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  background: var(--blue);
+  color: #fff;
+  border: 2px solid var(--black);
+  padding: 0.7em 2em;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-weight: 500;
+  transition: 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.custom-file-input:hover::before {
+  box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* custom-search-lable */
+.search-lable {
+  padding-bottom: 2em;
+  z-index: -1;
+}
+.search-lable > label {
+  font-size: 1.3em;
+  font-weight: 500;
+  /* font-style: italic; */
+}
+
+/* custom scrollbar */
+::-webkit-scrollbar {
+  width: 0.5em;
+  background: darkgrey;
+}
+
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--blue);
+  outline: 1px solid slategrey;
+}
+
+/* toggle search */
+.toggle-search {
+  text-align: center;
+  margin-bottom: 2em;
+}
+.toggle-search > button {
+  padding: 0.5em;
+  border: none;
+  background: #fff;
+  border: 3px solid var(--black);
+  border-top: none;
+  box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.1);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.toggle-search > button:hover {
+  transform: skewX(10deg);
+  box-shadow: -10px 10px 0px rgba(0, 0, 0, 0.1);
+  background: var(--blue);
+}
+
+.loading {
+  margin-top: 2em;
+}
+
+/* tutor view style  */
+.tutor-name-expertise > ul,
+.detail-body > ul {
+  padding-top: 1em;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.tutor-name-expertise > ul > li,
+.detail-body > ul > li {
+  margin-right: 0.5em;
+  padding: 0.5em;
+  background: var(--white);
+  box-shadow: inset 0px 5px 5px rgba(0, 0, 0, 0.1);
+  /* border: 2px solid var(--black); */
+  border-radius: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.tutor-name-expertise h2 {
+  margin-top: 0.5em;
+}
+.tutor-image {
+  display: flex;
+}
+.tutor-image img {
+  margin-right: 1.5em;
+  width: 12em;
+  height: 10em;
+  object-fit: cover;
+  object-position: 50% 50%;
+  border-radius: 10px;
+  border: 3.5px solid var(--black);
+  box-shadow: 0px 7px 0px rgba(0, 0, 0, 0.1);
+}
+.detail-header {
+  display: flex;
+  justify-content: space-between;
+  padding: 2em;
+  background: url("../assets/background-pattern-bottom-right-to-top-left.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+  margin-bottom: 1.5em;
+}
+.detail-body {
+  width: 70%;
+  padding: 0.5em 3em;
+  padding-bottom: 2em;
+}
+.detail-body > p,
+.about-me > p {
+  margin-top: 1em;
+  padding-left: 2em;
+}
+.detail-footer {
+  text-align: center;
+  padding-bottom: 3em;
+}
+
+/* toast style  */
+.dk__toast-section .dk__toast-top-center {
+  background: red;
+}
+
+/* main admin table style */
+.table tr.read {
+  background: #f8f6f6;
+}
+.table tr.not-read {
+  font-weight: 600;
+  background: #fff;
+}
+.data-table {
+  width: 80%;
+  margin: 0 auto;
+  padding: 2em 0;
+}
+.table-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.action > button {
+  padding: 0.5em;
+  border-radius: 50%;
+  background: #fff;
+  border: 2px solid var(--black);
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.edit > button:hover,
+.delete > button:hover {
+  background: var(--blue);
+  box-shadow: -3px 3px 0 rgba(0, 0, 0, 0.1);
+}
+.delete > button:hover {
+  background: var(--red);
+}
+.table {
+  overflow-x: auto;
+  margin-top: 2em;
+  box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+table {
+  border-collapse: collapse;
+  width: 100%;
+  overflow: auto;
+}
+td,
+th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 0.5em 0.5em;
+}
+th {
+  padding: 1em 0.5em;
+  background: var(--black);
+  color: #fff;
+  font-weight: 500;
+  text-align: center;
+}
+tr:nth-child(even) {
+  background: #fff;
+}
+tr {
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+tr:hover:not(:first-child) {
+  border-bottom: 3px solid var(--black);
+}
+.table-search {
+  width: 60%;
+  box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* paginator  */
+.paginator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 25%;
+  margin: 0 auto;
+  padding-top: 2em;
+  font-size: 1.1em;
+}
+.paginator > button {
+  padding: 0.7em 1em;
+  background: var(--black);
+  border: 2px solid var(--black);
+  color: #fff;
+  font-size: 1em;
+  border-radius: 50% 50%;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+.paginator > button:hover {
+  transform: scale(1.1) rotate(360deg);
+  background: var(--blue);
+  box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.1);
+}
+
+@media only screen and (min-device-width: 320px) and (max-device-width: 900px) {
+  .table-header {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr 1fr;
+  }
+  .table-header h1 {
+    grid-area: 1 / 1 / 2 / 2;
+    font-size: 1.5em;
+  }
+  .unread {
+    grid-area: 1 / 2 / 2 / 3;
+    text-align: right;
+    flex-direction: row-reverse;
+  }
+  .unread h1 {
+    font-size: 4em;
+    margin-left: 0.1em;
+  }
+  .table-header input {
+    grid-area: 2 / 1 / 3 / 3;
+  }
+  .data-table {
+    width: 90%;
+    padding-top: 1em;
+  }
+  .table-header input {
+    width: 100%;
+  }
+  .table {
+    margin-top: 1em;
+  }
+  .paginator {
+    width: 80%;
+  }
+  .request-navigate {
+    display: flex;
+  }
+}
+@media only screen and (min-device-width: 700px) and (max-device-width: 1024px) {
+}
