@@ -2,7 +2,7 @@
   <div class="tutor-full-view">
     <div class="tutor-full-view-title">
       <div class="name-profile-title">
-        <img :src="`http://localhost:5000/${tutor.profile[0].path}`">
+        <img :src="`https://private-tutoring-backend.herokuapp.com/${tutor.profile[0].path}`">
         <div>
           <h1>{{ tutor.fullName }}</h1>
           <h3>#{{ tutor.id }}</h3>
@@ -45,7 +45,7 @@
       <h1>🌾</h1>
       <div class="full-cv">
         <p>Tutor Resume:</p>
-        <a class="pdf-file" :href="`http://localhost:5000/${tutor.cv[0].path}`" target="_black">{{ tutor.cv[0].originalname }}</a>
+        <a class="pdf-file" :href="`https://private-tutoring-backend.herokuapp.com/${tutor.cv[0].path}`" target="_black">{{ tutor.cv[0].originalname }}</a>
       </div>
     </div>
     <div class="tutor-full-view-row02">
