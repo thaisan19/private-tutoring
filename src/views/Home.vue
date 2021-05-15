@@ -13,9 +13,6 @@
     <div class="main-section">
       <h1 class="animate__animated animate__jello">Private<br>Tutoring</h1>
     </div>
-    <div class="global-search">
-      <input type="text" placeholder="Search for Course or Tutor...🔎📚">
-    </div>
   </section>
   <div class="section-one-mobile" v-if="isMobile && !isTablet">
     <div class="section-one-mobile-content">
@@ -49,6 +46,18 @@
       </router-link>
     </div>
     <div class="button-tablet" v-if="isTablet">
+      <router-link to="/courses">
+        <main-button mode="btn black" class="button">
+            Courses
+        </main-button>
+      </router-link>
+      <router-link to="/tutors">
+        <main-button mode="btn black" class="button">
+            Tutors
+        </main-button>
+      </router-link>
+    </div>
+    <div class="button-desktop" v-if="!isTablet && !isMobile">
       <router-link to="/courses">
         <main-button mode="btn black" class="button">
             Courses
@@ -639,8 +648,21 @@ div .dot {
     transform: scale(1.3) translateY(-100px) rotate(360deg)
   }
 }
-.global-search {
+.button-desktop {
   text-align: center;
+  width: auto;
+  margin: 0 auto;
+  margin-bottom: 4em;
+  font-size: 1.3em;
+}
+.button-desktop button {
+  width: 20em;
+}
+.button-desktop button:first-child {
+  margin-right: 1em;
+}
+.button-desktop button:last-child {
+  margin-left: 1em;
 }
 /* .section-two {
   background: url('../assets/background-pattern-bottom-right-to-top-left.png');

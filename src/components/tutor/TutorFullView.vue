@@ -296,9 +296,10 @@ export default {
   }
   .full-view-action {
     position: absolute;
-    top: .7em;
-    right: .5em;
+    top: .5em;
+    right: .3em;
     display: flex;
+    justify-content: flex-end;
     flex-direction: column;
   }
   .name-profile-title {
