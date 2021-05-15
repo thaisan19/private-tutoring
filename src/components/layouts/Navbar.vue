@@ -42,7 +42,7 @@
         <img src="../../assets/illustration/tutor-male.svg"> 
       </div>
       <div v-if="activeTutor && activeTutor.profile">
-        <img :src="`http://localhost:5000/${activeTutor.profile[0].path}`"> 
+        <img :src="`https://private-tutoring-backend.herokuapp.com/${activeTutor.profile[0].path}`"> 
       </div>
       <div v-if="activeTutor && !activeTutor.profile && activeTutor.gender == '👩 Female'">
         <img src="../../assets/illustration/tutor-female.svg"> 

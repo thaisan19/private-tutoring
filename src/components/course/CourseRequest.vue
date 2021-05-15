@@ -101,7 +101,7 @@ export default {
        pickedTutoringDays: this.pickedTutoringDays,
        pickedTutoringHours: this.pickedTutoringHours,
        read: false
-     }).then(() => {
+     })
        this.$toast('Request Send! We will get back to you soon 👏', {
          duration: 3000,
          slotLeft: `🎉`,
@@ -122,25 +122,7 @@ export default {
         setTimeout(() =>{
           this.$router.go('/Courses')
         }, 2000);
-     }).catch(err =>
-       this.$toast('Could not Send Request! ' + err, {
-         duration: 3000,
-         slotLeft: `💥`,
-         slotRight: `❗❕`,
-         styles: {
-           borderRadius: '0px',
-           backgroundColor: 'var(--red)',
-           color: '#fff',
-           borderColor: 'var(--black)',
-           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
-           border: '3px solid var(--black)'
-         },
-         class: 'local-class',
-         positionX: 'center',
-         positionY: 'top',
-         disableClick: false
-       })
-     )
+    
      } else {
         this.$toast('✋ Please fill in all the information, at least pick one DAY and HOUR 🙏', {
          duration: 3000,
