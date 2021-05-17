@@ -120,7 +120,8 @@ export default {
        pickedTutoringDays: this.pickedTutoringDays,
        pickedTutoringHours: this.pickedTutoringHours,
        read: false
-     }).then(() => {
+     })
+     .then(() => {
        this.$toast('Request Send! We will get back to you soon 👏', {
          duration: 3000,
          slotLeft: `🎉`,
@@ -139,7 +140,7 @@ export default {
          disableClick: false
        })
         setTimeout(() =>{
-          this.$router.go('/Courses')
+          this.$router.go('')
         }, 2000);
      })
     //  .catch(err =>
