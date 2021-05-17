@@ -90,7 +90,7 @@ export default {
    async handleCourseRequest() {
 
      if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
-       await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/add', {
+       await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Course Request",
        objId: this.course.id,
        objName: this.course.name,
