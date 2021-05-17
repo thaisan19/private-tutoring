@@ -86,10 +86,10 @@ export default {
    }
  },
  methods: {
-   async handleRequest() {
+   handleRequest() {
 
      if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
-       await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
+      axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Tutor Request",
        objId: this.tutor.id,
        objName: this.tutor.fullName,

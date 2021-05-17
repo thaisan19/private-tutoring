@@ -87,10 +87,10 @@ export default {
    }
  },
  methods: {
-   async handleCourseRequest() {
+   handleCourseRequest() {
 
      if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
-       await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
+       axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Course Request",
        objId: this.course.id,
        objName: this.course.name,
@@ -120,7 +120,7 @@ export default {
          disableClick: false
        })
         setTimeout(() =>{
-          this.$router.go('/Courses')
+          this.$router.go('')
         }, 2000);
      }).catch(err =>
        this.$toast('Could not Send Request! ' + err, {
