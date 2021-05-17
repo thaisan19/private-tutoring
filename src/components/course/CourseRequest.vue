@@ -56,7 +56,7 @@
    </div>
    </form>
    <div class="send-request">
-    <main-button mode="btn black" @click="handleCourseRequest">🚀 Send Request</main-button>
+    <main-button mode="btn black" @click="handleRequestCourse">🚀 Send Request</main-button>
    </div>
   </div>
 </template>
@@ -87,10 +87,10 @@ export default {
    }
  },
  methods: {
-   handleCourseRequest() {
+   async handleRequestCourse() {
 
      if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
-       axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
+       await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Course Request",
        objId: this.course.id,
        objName: this.course.name,
@@ -120,7 +120,7 @@ export default {
          disableClick: false
        })
         setTimeout(() =>{
-          this.$router.go('')
+          this.$router.go('/Courses')
         }, 2000);
      }).catch(err =>
        this.$toast('Could not Send Request! ' + err, {

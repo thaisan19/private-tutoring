@@ -55,7 +55,7 @@
    </div>
    </form>
    <div class="send-request">
-    <main-button mode="btn black" @click="handleRequest">Send Request</main-button>
+    <main-button mode="btn black" @click="handleRequestTutor">Send Request</main-button>
    </div>
   </div>
 </template>
@@ -86,10 +86,10 @@ export default {
    }
  },
  methods: {
-   handleRequest() {
+   async handleRequestTutor() {
 
      if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
-      axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
+       await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Tutor Request",
        objId: this.tutor.id,
        objName: this.tutor.fullName,
