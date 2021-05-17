@@ -90,7 +90,25 @@ export default {
    async handleRequestCourse() {
 
      if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
-       await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
+        this.$toast('✋ Please fill in all the information, at least pick one DAY and HOUR 🙏', {
+         duration: 3000,
+         slotLeft: `💥`,
+         slotRight: `❗❕`,
+         styles: {
+           borderRadius: '0px',
+           backgroundColor: 'var(--red)',
+           color: '#fff',
+           borderColor: 'var(--black)',
+           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
+           border: '3px solid var(--black)'
+         },
+         class: 'local-class',
+         positionX: 'center',
+         positionY: 'top',
+         disableClick: false
+     })
+     }
+     await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Course Request",
        objId: this.course.id,
        objName: this.course.name,
@@ -141,25 +159,6 @@ export default {
          disableClick: false
        })
      )
-     } else {
-        this.$toast('✋ Please fill in all the information, at least pick one DAY and HOUR 🙏', {
-         duration: 3000,
-         slotLeft: `💥`,
-         slotRight: `❗❕`,
-         styles: {
-           borderRadius: '0px',
-           backgroundColor: 'var(--red)',
-           color: '#fff',
-           borderColor: 'var(--black)',
-           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
-           border: '3px solid var(--black)'
-         },
-         class: 'local-class',
-         positionX: 'center',
-         positionY: 'top',
-         disableClick: false
-     })
-     }
    }
  }
 }
