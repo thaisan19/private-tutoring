@@ -10,7 +10,7 @@
     <p>Tutor ID: <strong>#{{ tutor.id }}</strong> | Tutor Expertises: <strong v-for="(expertise) in tutor.expertises" :key="expertise">{{ expertise }}&nbsp;&nbsp;</strong></p>
     <h1>{{ tutor.fullName }}</h1>
    </div>
-   <form @submit.prevent="handleRequest">
+   <form>
     <div class="course-request-row01">
     <div>
       <label for="name">🧑 Student Name:</label>
@@ -53,10 +53,10 @@
       </div>
      </div>
    </div>
+   </form>
    <div class="send-request">
     <main-button mode="btn black" @click="handleRequest">Send Request</main-button>
    </div>
-   </form>
   </div>
 </template>
 
