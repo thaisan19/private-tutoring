@@ -107,6 +107,7 @@ export default {
          positionY: 'top',
          disableClick: false
      })
+     return
      }
      await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Course Request",
