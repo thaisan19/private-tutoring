@@ -373,6 +373,40 @@ tr:hover:not(:first-child) {
   box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.1);
 }
 
+/* delete confirmation popup */
+.p-confirm-popup {
+  background: #fff;
+  padding: 1em;
+  border: 3px solid var(--black);
+  box-shadow: -10px 10px 0px rgba(0, 0, 0, 0.1);
+  font-weight: 500;
+}
+.p-confirm-popup-footer {
+  text-align: right;
+  margin-top: 1em;
+}
+.p-confirm-popup-footer button:first-child {
+  margin-right: 1em;
+}
+.p-confirm-popup-footer button {
+  padding: 0.2em 1.5em;
+  font-size: 1em;
+  cursor: pointer;
+  transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.p-confirm-popup-footer button:hover {
+  box-shadow: -5px 5px 0 rgba(0, 0, 0, 0.1);
+}
+.p-confirm-popup-reject,
+.p-confirm-popup-accept {
+  border: 2px solid var(--black);
+  background: #fff;
+}
+.p-confirm-popup-accept {
+  background: var(--red);
+  color: #fff;
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 900px) {
   .table-header {
     display: grid;

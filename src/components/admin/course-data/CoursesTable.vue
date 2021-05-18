@@ -1,4 +1,5 @@
 <template>
+  <ConfirmPopup></ConfirmPopup>
   <div class="data-table animate__animated animate__fadeIn animate__fast">
     <div class="table-header course-table-header">
       <h1>{{ courses.length }} Courses Data</h1>
@@ -45,7 +46,7 @@
           </td>
           <td>
             <div class="action delete">
-              <button @click="deleteCourse(course)">❌</button>
+              <button @click="deleteCourse(course, $event)">❌</button>
             </div>
           </td>
         </tr>
@@ -84,6 +85,7 @@ import ModalView from '../../main-components/ModalView.vue'
 import CourseView from '../../course/CourseView.vue'
 import AddCourse from '../course-data/AddCourse.vue'
 import EditCourse from '../course-data/EditCourse.vue'
+import ConfirmPopup from 'primevue/confirmpopup';
 
 export default {
  props: ['courses'],
@@ -91,7 +93,8 @@ export default {
    ModalView, 
    CourseView ,
    EditCourse,
-   AddCourse
+   AddCourse,
+   ConfirmPopup
  },
  data() {
    return {
@@ -154,29 +157,41 @@ export default {
         this.openedEditCourse = null
       }
     },
-    async deleteCourse(course) {
-      await axios.delete(`https://private-tutoring-backend.herokuapp.com/api/course/delete/${course.id}`)
-       this.$toast(course.name + ' deleted!', {
-         duration: 2000,
-         slotLeft: `🚫`,
-         slotRight: `💥`,
-         styles: {
-           borderRadius: '0px',
-           backgroundColor: 'var(--blue)',
-           color: '#fff',
-           borderColor: 'var(--black)',
-           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
-           border: '3px solid var(--black)'
-         },
-         class: 'local-class',
-         positionX: 'center',
-         positionY: 'top',
-         disableClick: false
-       })
-        setTimeout(() =>{
-          this.$router.go('/AdminCourse')
-        }, 2000)
+    deleteCourse(course, event) {
+      this.$confirm.require({
+        target: event.currentTarget,
+        message: `Are you sure want to delete course name ${course.name} ❔❗❕⭕`,
+        accept: () => {
+         axios.delete(`https://private-tutoring-backend.herokuapp.com/api/course/delete/${course.id}`)
+        
+         .then(() => {
+          this.$toast(course.name + ' has been deleted!', {
+            duration: 2000,
+            slotLeft: `🚫`,
+            slotRight: `💥`,
+            styles: {
+              borderRadius: '0px',
+              backgroundColor: 'var(--blue)',
+              color: '#fff',
+              borderColor: 'var(--black)',
+              boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
+              border: '3px solid var(--black)'
+            },
+            class: 'local-class',
+            positionX: 'center',
+            positionY: 'top',
+            disableClick: false
+          })
+          setTimeout(() =>{
+            this.$router.go('')
+          }, 2000)
+        })
         .catch(err => console.log(err))
+        },
+        reject: () => {
+          this.$confirm.close()
+        }
+      })
     }
     // updateTutor(tutor) {
     //   axios.put(`http://localhost:3000/tutors/${tutor.id}`, tutor)

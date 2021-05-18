@@ -4,6 +4,8 @@ import router from './router'
 import store from './store/index.js'
 import 'animate.css'
 import DKToast from 'vue-dk-toast'
+import PrimeVue from 'primevue/config'
+import ConfirmationService from 'primevue/confirmationservice'
 
 import './assets/main.css'
 
@@ -22,6 +24,8 @@ app.use(DKToast, {
   backgroundColor: '#fff'
  }
 })
+app.use(PrimeVue)
+app.use(ConfirmationService)
 
 app.component('main-button', MainButton)
 

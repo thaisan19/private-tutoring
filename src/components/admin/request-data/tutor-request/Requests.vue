@@ -1,4 +1,5 @@
 <template>
+  <ConfirmPopup></ConfirmPopup>
   <div class="data-table animate__animated animate__fadeIn animate__faster">
     <div class="table-header tutor-table-header">
       <h1>{{ requests.length }} Requests</h1>
@@ -43,7 +44,7 @@
           </td>
           <td>
             <div class="action edit">
-              <button @click="deleteRequest(request)">❌</button>
+              <button @click="deleteRequest(request, $event)">❌</button>
             </div>
           </td>
         </tr>
@@ -68,12 +69,14 @@ import { ref } from 'vue'
 import axios from 'axios'
 import ModalView from '../../../main-components/ModalView.vue'
 import RequestView from '../tutor-request/RequestView.vue'
+import ConfirmPopup from 'primevue/confirmpopup';
 
 export default {
  props: ['requests', 'unreadReqs'],
  components: { 
    ModalView, 
-   RequestView 
+   RequestView,
+   ConfirmPopup
  },
  data() {
    return {
@@ -116,46 +119,41 @@ export default {
         this.openedRequest = null
       }
     },
-    async deleteRequest(request) {
-      await axios.delete('https://private-tutoring-backend.herokuapp.com/api/request/delete/' + request._id)
-      .then(() => {
-       this.$toast('Deleted request from ' + request.studentName, {
-         duration: 3000,
-         slotLeft: `✨`,
-         slotRight: `🎉`,
-         styles: {
-           borderRadius: '0px',
-           backgroundColor: 'var(--blue)',
-           color: '#fff',
-           borderColor: 'var(--black)',
-           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
-           border: '3px solid var(--black)'
-         },
-         class: 'local-class',
-         positionX: 'center',
-         positionY: 'top',
-         disableClick: false
-       })
-      }
-      ).catch(err =>
-       this.$toast('Request could not delete: ' + err + request.title, {
-         duration: 3000,
-         slotLeft: `💥`,
-         slotRight: `❗❕`,
-         styles: {
-           borderRadius: '0px',
-           backgroundColor: 'var(--red)',
-           color: '#fff',
-           borderColor: 'var(--black)',
-           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
-           border: '3px solid var(--black)'
-         },
-         class: 'local-class',
-         positionX: 'center',
-         positionY: 'top',
-         disableClick: false
-       })
-     )
+    async deleteRequest(request, event) {
+      this.$confirm.require({
+        target: event.currentTarget,
+        message: `Are you sure want to delete tutor name ${request._id} ❔❗❕⭕`,
+        accept: () => {
+         axios.delete(`https://private-tutoring-backend.herokuapp.com/api/request/delete/${request._id}`)
+        
+         .then(() => {
+          this.$toast(request._id + ' has been deleted!', {
+            duration: 2000,
+            slotLeft: `🚫`,
+            slotRight: `💥`,
+            styles: {
+              borderRadius: '0px',
+              backgroundColor: 'var(--blue)',
+              color: '#fff',
+              borderColor: 'var(--black)',
+              boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
+              border: '3px solid var(--black)'
+            },
+            class: 'local-class',
+            positionX: 'center',
+            positionY: 'top',
+            disableClick: false
+          })
+          setTimeout(() =>{
+            this.$router.go('')
+          }, 2000)
+        })
+        .catch(err => console.log(err))
+        },
+        reject: () => {
+          this.$confirm.close()
+        }
+      })
 
         // .then(() => this.$router.go('AdminRequest'))
         
