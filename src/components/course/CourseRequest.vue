@@ -102,7 +102,7 @@ export default {
        pickedTutoringHours: this.pickedTutoringHours,
        read: false
      }).then(() => {
-       this.$toast('Request Made!', {
+       this.$toast('Course Request Made! We will get back to you soon 👏', {
          duration: 3000,
          slotLeft: `🎉`,
          slotRight: `🎊`,
