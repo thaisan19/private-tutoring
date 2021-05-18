@@ -146,7 +146,6 @@ export default {
         //   this.$router.go('')
         // }, 2000);
      } catch (err) {
-       if(error.response) {
          this.$toast('Could not make request right now! ' + err, {
          duration: 3000,
          slotLeft: `💥`,
@@ -164,7 +163,6 @@ export default {
          positionY: 'top',
          disableClick: false
        })
-       }
      }
    }
  }
