@@ -64,7 +64,6 @@
 
 <script>
 import axios from 'axios'
-import { response } from 'express';
 
 export default {
   setup(props, {emit}) {
@@ -111,9 +110,8 @@ export default {
      })
      return
      }
-
-     try {
-       const res = await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
+    
+    await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Course Request",
        objId: this.course.id,
        objName: this.course.name,
@@ -125,6 +123,8 @@ export default {
        pickedTutoringHours: this.pickedTutoringHours,
        read: false
      })
+     .then((res) => {
+       console.log(res)
        this.$toast('Request Made!', {
          duration: 3000,
          slotLeft: `🎉`,
@@ -145,8 +145,9 @@ export default {
         // setTimeout(() =>{
         //   this.$router.go('')
         // }, 2000);
-     } catch (err) {
-         this.$toast('Could not make request right now! ' + err, {
+     })
+     .catch((err) =>
+       this.$toast('Could not make request right now! ' + err, {
          duration: 3000,
          slotLeft: `💥`,
          slotRight: `❗❕`,
@@ -163,7 +164,7 @@ export default {
          positionY: 'top',
          disableClick: false
        })
-     }
+     )
    }
  }
 }
