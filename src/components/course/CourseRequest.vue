@@ -54,11 +54,10 @@
       </div>
      </div>
    </div>
-   <div class="send-request">
-    <main-button mode="btn black"
-    @click="handleRequestCourse">🚀 Send Request</main-button>
-   </div>
    </form>
+   <div class="send-request">
+    <main-button mode="btn black" @click="handleRequestCourse">🚀 Send Request</main-button>
+   </div>
   </div>
 </template>
 
@@ -90,28 +89,8 @@ export default {
  methods: {
    async handleRequestCourse() {
 
-     if(this.studentName.length < 0 && this.studentEmail.length < 0 && this.studentPhoneNumber.length < 0 && this.pickedTutoringDays.length < 0  && this.pickedTutoringHours.length < 0) {
-        this.$toast('✋ Please fill in all the information, at least pick one DAY and HOUR 🙏', {
-         duration: 3000,
-         slotLeft: `💥`,
-         slotRight: `❗❕`,
-         styles: {
-           borderRadius: '0px',
-           backgroundColor: 'var(--red)',
-           color: '#fff',
-           borderColor: 'var(--black)',
-           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
-           border: '3px solid var(--black)'
-         },
-         class: 'local-class',
-         positionX: 'center',
-         positionY: 'top',
-         disableClick: false
-     })
-     return
-     }
-    
-    await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
+     if(this.studentName.length && this.studentEmail.length && this.studentPhoneNumber.length && this.pickedTutoringDays.length  && this.pickedTutoringHours.length) {
+       await axios.post('https://private-tutoring-backend.herokuapp.com/api/request/make', {
        title: "Course Request",
        objId: this.course.id,
        objName: this.course.name,
@@ -122,9 +101,7 @@ export default {
        pickedTutoringDays: this.pickedTutoringDays,
        pickedTutoringHours: this.pickedTutoringHours,
        read: false
-     })
-     .then((res) => {
-       console.log(res)
+     }).then(() => {
        this.$toast('Request Made!', {
          duration: 3000,
          slotLeft: `🎉`,
@@ -142,11 +119,10 @@ export default {
          positionY: 'top',
          disableClick: false
        })
-        // setTimeout(() =>{
-        //   this.$router.go('')
-        // }, 2000);
-     })
-     .catch((err) =>
+        setTimeout(() =>{
+          this.$router.go('')
+        }, 2000);
+     }).catch(err =>
        this.$toast('Could not make request right now! ' + err, {
          duration: 3000,
          slotLeft: `💥`,
@@ -165,6 +141,25 @@ export default {
          disableClick: false
        })
      )
+     } else {
+        this.$toast('✋ Please fill in all the information, at least pick one DAY and HOUR 🙏', {
+         duration: 3000,
+         slotLeft: `💥`,
+         slotRight: `❗❕`,
+         styles: {
+           borderRadius: '0px',
+           backgroundColor: 'var(--red)',
+           color: '#fff',
+           borderColor: 'var(--black)',
+           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
+           border: '3px solid var(--black)'
+         },
+         class: 'local-class',
+         positionX: 'center',
+         positionY: 'top',
+         disableClick: false
+     })
+     }
    }
  }
 }
