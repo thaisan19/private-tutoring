@@ -11,7 +11,7 @@
     <p>Course ID: <strong>#{{ course.id }}</strong> | Course Price: <strong>${{ course.price }}</strong></p>
     <h1>{{ course.name }}</h1>
    </div>
-   <form>
+   <form @submit.prevent="handleRequestCourse">
         <div class="course-request-row01">
     <div>
       <label for="name">🧑 Student Name:</label>
@@ -54,10 +54,10 @@
       </div>
      </div>
    </div>
-   </form>
    <div class="send-request">
-    <main-button mode="btn black" @click="handleRequestCourse">🚀 Send Request</main-button>
+    <main-button mode="btn black">🚀 Send Request</main-button>
    </div>
+   </form>
   </div>
 </template>
 
