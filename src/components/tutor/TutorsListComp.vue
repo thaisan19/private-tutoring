@@ -16,15 +16,9 @@
         :key="tutor.id"
         class="tutor-list"
         >
-      <div v-if="tutor && !tutor.profile && tutor.gender == '👨 Male'">
-        <img src="../../assets/illustration/tutor-male.svg"> 
-      </div>
-      <div v-if="tutor && tutor.profile">
-        <img :src="`https://private-tutoring-backend.herokuapp.com/${tutor.profile[0].path}`"> 
-      </div>
-      <div v-if="tutor && !tutor.profile && tutor.gender == '👩 Female'">
-        <img src="../../assets/illustration/tutor-female.svg"> 
-      </div>
+        <div class="tutor-profile-img">
+          <img :src="`https://private-tutoring-backend.herokuapp.com/${tutor.profile[0].path}`">
+        </div>
         <div class="tutor-desc">
           <h1>{{ tutor.fullName }} <span v-if="isMobile">- ${{ tutor.monthlyRate }}</span></h1>
           <p>{{ tutor.aboutMe }}</p>
