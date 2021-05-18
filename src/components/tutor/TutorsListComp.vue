@@ -1,12 +1,12 @@
 <template>
-  <div class="toggle-search">
-		<button @click="searchOn = !searchOn"><h1>🔎</h1></button>
+  <div class="toggle-search" :class="{changeSticky: scrollPosition > 110}">
+		<button @click="toggleSearch" ><h1>🔎</h1></button>
 	</div>
 	<transition mode="out-in"
 	enter-active-class="animate__animated animate__zoomIn animate__faster"
 	leave-active-class="animate__animated animate__zoomOut animate__faster">
   	<div class="search-lable" v-if="searchOn">
-    	<input type="text" name="search-lable" v-model="search" placeholder="Search by: Courses' Name | Price">
+    	<input type="text" name="search-lable" v-model="search" placeholder="Search by: Courses' Name | Price" :class="{changeInputSticky: scrollPosition > 110}">
   </div>
 	</transition>
   <div class="tutors-list" v-if="filteredTutors.length > 0">
@@ -79,7 +79,8 @@ export default {
     return {
       search: '',
       searchOn: false,
-      windowWidth: window.innerWidth
+      windowWidth: window.innerWidth,
+      scrollPosition: null
     }
   },
   setup() {
@@ -89,6 +90,13 @@ export default {
     }
   },
   methods: {
+    updateScroll() {
+      this.scrollPosition = window.scrollY
+    },
+    toggleSearch() {
+      this.searchOn = !this.searchOn
+      this.search = ''
+    },
     onResize() {
       this.windowWidth = window.innerWidth;
     },
@@ -151,6 +159,7 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     })
+    window.addEventListener('scroll', this.updateScroll);
   },
   beforeUnmount() {
     window.removeEventListener('resize', this.onResize);

@@ -192,6 +192,13 @@ textarea {
 .toggle-search {
   text-align: center;
   margin-bottom: 2em;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.toggle-search:not(:stuck) {
+  background: red;
 }
 .toggle-search > button {
   padding: 0.5em;
@@ -206,6 +213,21 @@ textarea {
   transform: skewX(10deg);
   box-shadow: -10px 10px 0px rgba(0, 0, 0, 0.1);
   background: var(--blue);
+}
+.search-lable {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 2.5em;
+  z-index: 1000;
+}
+.changeSticky button {
+  font-size: 0.6em;
+  box-shadow: -5px 5px 0 rgba(0, 0, 0, 0.2);
+}
+.changeInputSticky {
+  box-shadow: -5px 5px 0 rgba(0, 0, 0, 0.3);
+  text-align: center;
+  border: 3px solid var(--black);
 }
 
 .loading {

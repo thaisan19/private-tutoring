@@ -1,13 +1,13 @@
 <template>
   <ConfirmPopup></ConfirmPopup>
-	<div class="toggle-search">
-		<button @click="searchOn = !searchOn"><h1>🔎</h1></button>
+	<div class="toggle-search" :class="{changeSticky: scrollPosition > 110}">
+		<button @click="toggleSearch"><h1>🔎</h1></button>
 	</div>
 	<transition mode="out-in"
 	enter-active-class="animate__animated animate__zoomIn animate__faster"
 	leave-active-class="animate__animated animate__zoomOut animate__faster">
   	<div class="search-lable" v-if="searchOn">
-    	<input type="text" name="search-lable" v-model="search" placeholder="Search by: Courses' Name | Courses' Price | Tutors' Name">
+    	<input type="text" name="search-lable" v-model="search" placeholder="Search by: Courses' Name | Courses' Price | Tutors' Name" :class="{changeInputSticky: scrollPosition > 110}">
   </div>
 	</transition>
   <div class="courses-list" v-if="filteredCourses.length > 0" :courses="courses">
@@ -113,14 +113,23 @@ export default {
     return {
       search: '',
 			searchOn: false,
-      userId: ''
+      userId: '',
+      scrollPosition: null
     }
   },
   setup() {
+
 		return { openedCourse: ref(null), openedCouresRequest: ref(null), openedEditCourse: ref(null) }
   },
   
   methods: {
+    updateScroll() {
+      this.scrollPosition = window.scrollY
+    },
+    toggleSearch() {
+      this.searchOn = !this.searchOn
+      this.search = ''
+    },
     openCourse(course) {
       this.openedCourse = course;
 
@@ -216,11 +225,23 @@ export default {
     if(localStorage.getItem('userId') !== null) {
       this.userId = localStorage.getItem('userId')
     }
+  },
+  mounted() {
+    window.addEventListener('scroll', this.updateScroll);
   }
 }
 </script>
 
 <style scoped>
+.changeSticky button{
+  font-size: .6em;
+  box-shadow: -5px 5px 0 rgba(0,0,0,.2);
+}
+.changeInputSticky {
+  box-shadow: -5px 5px 0 rgba(0,0,0,.3);
+  text-align: center;
+  border: 3px solid var(--black);
+}
 .course-btn {
 	box-shadow: -5px 5px 0px rgba(0,0,0,.1);
 }
