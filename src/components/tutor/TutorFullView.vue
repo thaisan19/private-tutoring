@@ -23,12 +23,12 @@
         </main-button>
       </div>
       <div class="full-view-action" v-if="!isLoggedInAsTutor && !isLoggedInAsAdmin">
-        <main-button 
+        <!-- <main-button 
           mode="btn black"
           @click="openTutorRequest(tutor)"
         >
           Send Request 🚀
-        </main-button>
+        </main-button> -->
       </div>
 
     </div>

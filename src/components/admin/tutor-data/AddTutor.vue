@@ -20,7 +20,7 @@
       <div class="add-tutor-row02">
         <div class="phone-number">
           <label>📞 Personal Phone Number:</label>
-          <input type="tel" v-model="phoneNumber" required>
+          <InputMask v-model="phoneNumber" mask="(999) 999 999?9" class="inputmask" required />
         </div>
         <div class="gender">
           <label>👨‍👦‍👦 Gender:</label>
@@ -38,12 +38,12 @@
       <div class="add-tutor-row03">
         <div class="profile-img">
           <label>🙂 Profile Image:</label>
-          <input type="file" class="custom-file-input" @change="handleProfile">
+          <input type="file" class="custom-file-input" @change="handleProfile" id="file">
           <p class="error-file">{{profileError}}</p>
         </div>
         <div class="cv">
           <label>📃 Resume File:</label>
-          <input type="file" class="custom-file-input" @change="handleCv">
+          <input type="file" class="custom-file-input" @change="handleCv" id="file">
           <p class="error-file">{{cvError}}</p>
         </div>
       </div>
@@ -106,8 +106,12 @@
 import { useRouter } from 'vue-router'
 import { ref } from 'vue'
 import axios from 'axios'
+import InputMask from 'primevue/inputmask'
 
 export default {
+  components: {
+    InputMask
+  },
   setup() {
     const fullName = ref('')
     const monthlyRate = ref('')
@@ -233,6 +237,7 @@ export default {
   },
   methods: {
     async handleAddTutor() {
+
       const formData = new FormData();
 
       formData.append("fullName", this.fullName)
@@ -280,7 +285,7 @@ export default {
           this.$router.go('/register')
         }, 2000);
       }).catch(err =>
-       this.$toast('Could not Register Tutor! ' + err, {
+       this.$toast('Could not Register Tutor! ' + 'Please use unique information to register 🤗🙏', {
          duration: 3000,
          slotLeft: `💥`,
          slotRight: `❗❕`,
@@ -299,6 +304,9 @@ export default {
        })
      )
     }
+  },
+  mounted() {
+    document.getElementById("file").required = true;
   }
 }
 </script>

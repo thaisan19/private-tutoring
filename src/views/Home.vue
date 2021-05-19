@@ -379,7 +379,6 @@ export default {
   justify-content: center;
   align-items: center;
   box-shadow: 10px 10px 0 rgba(0,0,0,0.1);
-  cursor: pointer;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   height: auto;
   overflow: hidden;
@@ -682,7 +681,6 @@ div .dot {
 }
 .first-body h1 {
   font-size: 3.5em;
-  cursor: pointer;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 .first-body h1:hover {
@@ -698,9 +696,6 @@ div .dot {
  font-size: 1.8em;
  line-height: 1.4em;
 }
-.first-body-left strong {
-  cursor: pointer;
-}
 .first-body-right {
   display: grid;
   grid-template-rows: repeat(3, 1fr);
@@ -708,7 +703,6 @@ div .dot {
 .first-body-right h2 {
   font-size: 2em;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
 }
 .first-body-right-ele div{
   display: flex;
@@ -761,7 +755,6 @@ div .dot {
   color: #fff;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
   margin-right: .2em;
-  cursor: pointer;
   z-index: 1;
   text-shadow: 10px 10px 0px rgba(0,0,0,0.1);
 }
@@ -778,7 +771,6 @@ div .dot {
   line-height: 1em;
   color: #fff;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
   z-index: 1;
   text-shadow: 10px 10px 0px rgba(0,0,0,0.1);
 }
@@ -798,13 +790,11 @@ div .dot {
 .step {
   z-index: 1;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
 }
 .step h2 {
   font-size: 1.5em;
   font-weight: 500;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
 }
 .step h2:hover {
   transform: scale(1.2) rotateZ(-1deg);
@@ -833,7 +823,6 @@ div .dot {
 .stick--active {
   background: var(--yellow);
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
 }
 .stick--active:hover {
   transform: skew(-40deg) scale(1.1);
@@ -880,7 +869,6 @@ div .dot {
 .tutor-video-title h2 {
   font-size: 4em;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
 }
 .student-video-title h2:hover,
 .tutor-video-title h2:hover {
@@ -899,7 +887,6 @@ div .dot {
 .tutor-video-title h1 {
   font-size: 5em;
   transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  cursor: pointer;
 }
 .student-video-title h1:hover,
 .tutor-video-title h1:hover {
@@ -943,7 +930,8 @@ div .dot {
 .our-team {
   width: 80%;
   margin: 0 auto;
-  z-index: 1;
+  z-index: 1000;
+  position: relative;
   height: auto;
 }
 .our-team h1 {
@@ -955,7 +943,7 @@ div .dot {
   z-index: 1;
 }
 .our-team h1:hover {
-  letter-spacing: .7em;
+  letter-spacing: .1em;
 }
 .first-body {
   display: grid;

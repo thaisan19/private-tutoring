@@ -429,6 +429,44 @@ tr:hover:not(:first-child) {
   color: #fff;
 }
 
+/* tooltip style  */
+.action {
+  position: relative;
+}
+.action .tooltiptext {
+  visibility: hidden;
+  width: auto;
+  background-color: #fff;
+  color: var(--black);
+  text-align: center;
+  border: 3px solid var(--black);
+  box-shadow: -5px 5px 0px rgba(0, 0, 0, 0.1);
+  padding: 0.2em 0.5em;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  font-size: 1em;
+  margin-left: -60px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.action .tooltiptext::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  right: 1%;
+  margin-left: -0.5em;
+  border-width: 0.5em;
+  border-style: solid;
+  border-color: var(--black) transparent transparent transparent;
+}
+
+.action:hover .tooltiptext {
+  visibility: visible;
+  opacity: 1;
+}
+
 @media only screen and (min-device-width: 320px) and (max-device-width: 900px) {
   .table-header {
     display: grid;

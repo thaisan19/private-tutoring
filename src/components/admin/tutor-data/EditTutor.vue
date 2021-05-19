@@ -38,12 +38,12 @@
       <div class="add-tutor-row03">
         <div class="profile-img">
           <label>🙂 Profile Image:</label>
-          <input type="file" class="custom-file-input" @change="handleProfile">
+          <input type="file" class="custom-file-input" @change="handleProfile" id="file">
           <p class="error-file">{{profileError}}</p>
         </div>
         <div class="cv">
           <label>📃 Resume File:</label>
-          <input type="file" class="custom-file-input" @change="handleCv">
+          <input type="file" class="custom-file-input" @change="handleCv" id="file">
           <p class="error-file">{{cvError}}</p>
         </div>
       </div>
@@ -323,7 +323,10 @@ export default {
        })
      )
    }
- }
+ },
+  mounted() {
+    document.getElementById("file").required = true;
+  }
 }
 </script>
 

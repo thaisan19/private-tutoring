@@ -25,7 +25,7 @@
    <div class="course-request-row02">
     <div>
       <label for="phone">📞 Student Phone Number:</label>
-      <input type="tel" v-model="studentPhoneNumber" required>
+      <InputMask v-model="studentPhoneNumber" mask="(999) 999 999?9" class="inputmask" required />
     </div>
     <div>
       <label for="addReq">🎫 Additional Request:</label>
@@ -54,17 +54,21 @@
       </div>
      </div>
    </div>
-   </form>
    <div class="send-request">
     <main-button mode="btn black" @click="handleRequestCourse">🚀 Send Request</main-button>
    </div>
+   </form>
   </div>
 </template>
 
 <script>
 import axios from 'axios'
+import InputMask from 'primevue/inputmask'
 
 export default {
+  components: {
+    InputMask
+  },
   setup(props, {emit}) {
    const course = props.course;
 

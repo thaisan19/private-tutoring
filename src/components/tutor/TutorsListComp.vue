@@ -17,7 +17,7 @@
         class="tutor-list"
         >
         <div class="tutor-profile-img">
-          <img :src="`https://private-tutoring-backend.herokuapp.com/${tutor.profile[0].path}`">
+          <img :src="`https://private-tutoring-backend.herokuapp.com/${tutor.profile[0].path}`" :alt="tutor.profile[0].originalname">
         </div>
         <div class="tutor-desc">
           <h1>{{ tutor.fullName }} <span v-if="isMobile">- ${{ tutor.monthlyRate }}</span></h1>
@@ -38,7 +38,7 @@
             Details 🧷
            </main-button>
            <main-button mode="btn black" @click="openTutorRequest(tutor)">
-            Request 🙌
+            Courses 🙌
            </main-button>
           </div>
         </div>
@@ -57,7 +57,7 @@
 	<ModalView 
     v-if="openedTutorRequest"
     @closeModal="openedTutorRequest = null">
-    <TutorRequest :tutor="openedTutorRequest" @changeTutorRequest="changeTutorRequest" />
+    <CoursesListComp :courses="openedTutorRequest" @changeTutorRequest="changeTutorRequest" />
   </ModalView>
 </template>
 
@@ -66,15 +66,17 @@ import { ref } from 'vue'
 import axios from 'axios'
 import ModalView from '../main-components/ModalView.vue'
 import TutorFullView from './TutorFullView.vue'
-import TutorRequest from './TutorRequest.vue'
+// import TutorRequest from './TutorRequest.vue'
+import CoursesListComp from '../course/CoursesListComp.vue'
 
 export default {
   props: ['tutors'],
   components: {
     ModalView,
     TutorFullView,
-    TutorRequest
-  }, 
+    // TutorRequest,
+    CoursesListComp
+  },
   data() {
     return {
       search: '',
@@ -115,7 +117,7 @@ export default {
       }
     },
     openTutorRequest(tutor) {
-      this.openedTutorRequest = tutor;
+      this.openedTutorRequest = tutor.ownedCourses;
     },
     changeCourseRequest({closeModal}) {
       let tutor = this.openedTutorRequest
@@ -214,7 +216,6 @@ export default {
     display: flex;
     align-items: center;
     padding-left: 1em;
-    cursor: pointer;
     flex-wrap: wrap;
   }
   .tutor-desc > ul > li {
@@ -225,7 +226,6 @@ export default {
     /* border: 2px solid var(--black); */
     border-radius: 20px;
     font-weight: 500;
-    cursor: pointer;
     margin-bottom: .5em;
   }
   .tutor-actions {

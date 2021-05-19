@@ -67,8 +67,9 @@
 			</div>
     </li>
    </ul>
+   
   </div>
-	<div v-else>
+	<div v-else class="no-result">
 		<h1>No course found, please try another title...🙌🍁</h1>
 	</div>
 	<ModalView 
@@ -233,14 +234,8 @@ export default {
 </script>
 
 <style scoped>
-.changeSticky button{
-  font-size: .6em;
-  box-shadow: -5px 5px 0 rgba(0,0,0,.2);
-}
-.changeInputSticky {
-  box-shadow: -5px 5px 0 rgba(0,0,0,.3);
-  text-align: center;
-  border: 3px solid var(--black);
+.no-result {
+  padding: 2em;
 }
 .course-btn {
 	box-shadow: -5px 5px 0px rgba(0,0,0,.1);

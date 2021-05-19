@@ -108,7 +108,6 @@ export default {
 .register-step {
  padding: 2em;
  border: 2.5px solid var(--black);
- cursor: pointer;
  background: url('../../assets/background-pattern-vertical.png');
  background-size: cover;
  background-repeat: no-repeat;

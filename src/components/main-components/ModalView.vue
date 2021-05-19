@@ -19,15 +19,15 @@ export default {
 
 <style>
 .overlay {
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
   position: fixed;
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.1;
   background-color: black;
-  height: 100vh;
+  height: 250vh;
   z-index: 10;
 }
 .modal-card {
@@ -38,7 +38,7 @@ export default {
   transform: translate(-50%, -50%);
   padding: 20px;
   background-color: white;
-  max-height: 80vh;
+  max-height: 80%;
   overflow: auto;
   z-index: 1000;
   opacity: 1;

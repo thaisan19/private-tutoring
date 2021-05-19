@@ -50,6 +50,7 @@
           <td>
             <div class="action edit">
               <button @click="sendEmail(tutor)">👏</button>
+              <span class="tooltiptext">Send<br> Email</span>
             </div>
           </td>
         </tr>

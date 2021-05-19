@@ -42,6 +42,7 @@
           <td>
             <div class="action edit">
               <button @click="openEditCourse(course)">🔨</button>
+               <span class="tooltiptext">Edit Course</span>
             </div>
           </td>
           <td>
@@ -221,4 +222,5 @@ export default {
 </script>
 
 <style>
+
 </style>

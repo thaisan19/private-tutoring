@@ -45,6 +45,7 @@
           <td>
             <div class="action edit">
               <button @click="openEditTutor(tutor)">🔨</button>
+              <span class="tooltiptext">Edit <b>{{tutor.fullName}}</b></span>
             </div>
           </td>
           <td>
