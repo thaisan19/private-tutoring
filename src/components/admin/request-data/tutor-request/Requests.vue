@@ -122,7 +122,7 @@ export default {
     async deleteRequest(request, event) {
       this.$confirm.require({
         target: event.currentTarget,
-        message: `Are you sure want to delete tutor name ${request._id} ❔❗❕⭕`,
+        message: `Are you sure want to delete request id: ${request._id} ❔❗❕⭕`,
         accept: () => {
          axios.delete(`https://private-tutoring-backend.herokuapp.com/api/request/delete/${request._id}`)
         
