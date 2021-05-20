@@ -209,17 +209,17 @@ export default {
   position: relative;
   z-index: 1000;
 }
-  .tutor-full-view::before {
-    content: "";
-    background: url('../../assets/background-pattern-vertical.png');
-    background-size: auto;
-    top: 0;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    z-index: 0;
-    position: absolute;
-  }
+.tutor-full-view::before {
+  content: "";
+  background: url('../../assets/background-pattern-vertical.png');
+  background-size: auto;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 0;
+  position: absolute;
+}
 .tutor-full-view-row01,
 .tutor-full-view-row02 {
   display: flex;
@@ -253,7 +253,6 @@ export default {
   padding: 2em;
   margin: 0 auto;
   background: #fff;
-  border: 3px solid var(--black);
   box-shadow: -10px 10px 0px rgba(0,0,0,0.1);
   overflow: hidden;
 }

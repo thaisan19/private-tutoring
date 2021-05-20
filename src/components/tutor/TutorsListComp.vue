@@ -54,11 +54,16 @@
     <TutorFullView :tutor="openedTutor" @changeTutor="changeTutor" />
   </ModalView>
 
-	<ModalView 
-    v-if="openedTutorRequest"
-    @closeModal="openedTutorRequest = null">
-    <CoursesListComp :courses="openedTutorRequest" @changeTutorRequest="changeTutorRequest" />
-  </ModalView>
+  <div class="owned-courses">
+	  <ModalView 
+      v-if="openedTutorRequest"
+      @closeModal="openedTutorRequest = null">
+      <div class="is-courses">
+        <h1>{{ openedTutorRequest.length }} courses</h1>
+      </div>
+      <CoursesListComp :courses="openedTutorRequest" @changeTutorRequest="changeTutorRequest" class="owned-courses" />
+    </ModalView>
+  </div>
 </template>
 
 <script>
@@ -170,6 +175,11 @@ export default {
 </script>
 
 <style scoped>
+  .is-courses {
+    position: absolute;
+    top: 1em;
+    left: 2em;
+  }
   .tutors-list > ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
@@ -258,6 +268,13 @@ export default {
   }
 
 @media only screen and (min-device-width : 200px) and (max-device-width : 480px) {
+  .is-courses {
+    top: 1em;
+    left: 1em;
+  }
+  .is-courses h1{
+    font-size: 1.5em;
+  }
   .tutors-list > ul {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -286,9 +303,6 @@ export default {
     grid-area: 1 / 2 / 2 / 3;
     width: 100%;
     padding: 0;
-    background: url('../../assets/background-pattern-vertical.png');
-    background-size:contain;
-    background-repeat: no-repeat;
   }
   .tutor-actions {
     grid-area: 2 / 2 / 3 / 3;
@@ -300,8 +314,9 @@ export default {
   .tutor-button button:first-child {
     margin-right: .5em;
   }
-  .tutor-button button {
-    margin-bottom: 0;
+  .tutor-button {
+    padding-bottom: .2em;
+    padding-top: .7em;
   }
 }
 

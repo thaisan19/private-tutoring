@@ -219,7 +219,6 @@ export default {
   },
  data() {
   return {
-   uri: 'https://private-tutoring-backend.herokuapp.com/api/admin',
    fullName: '',
    monthlyRate: '',
    email: '',
@@ -229,9 +228,10 @@ export default {
    achievement: ''
   }
  },
- async mounted() {
-   await axios.get(this.uri + '/find-tutor/' + this.tutor._id)
-    .then(res => {
+ async created() {
+   await axios.get('https://private-tutoring-backend.herokuapp.com/api/admin/find-tutor/' + this.tutor._id)
+    .then((res) => {
+      console.log(res.data.profile[0])
       this.fullName = res.data.fullName,
       this.monthlyRate = res.data.monthlyRate,
       this.email = res.data.email,
@@ -239,8 +239,8 @@ export default {
       this.aboutMe = res.data.aboutMe,
       this.gender = res.data.gender,
       this.dateOfBirth = res.data.dateOfBirth,
-      // this.profile = res.data.profile,
-      // this.cv = res.data.cv,
+      this.profile = res.data.profile[0],
+      this.cv = res.data.cv[0],
       this.eduBackground = res.data.eduBackground,
       this.achievement = res.data.achievement,
       this.expertises = res.data.expertises,

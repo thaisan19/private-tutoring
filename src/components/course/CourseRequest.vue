@@ -3,7 +3,7 @@
    <div class="title">
      <h2>🙌 Course Request</h2>
      <div class="tutoring-by">
-       <p>Tutoring By:</p>
+       <p>Tutor By:</p>
        <h2>{{ course.createdBy }}</h2>
      </div>
    </div>
@@ -222,5 +222,25 @@ export default {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   grid-gap: 1rem;
+}
+
+@media only screen and (min-device-width : 200px) and (max-device-width : 480px) {
+  .course-request-title h1 {
+    font-size: 1.5em;
+  }
+  .course-request-title p {
+    font-size: 1em;
+  }
+  .tutoring-by {
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+  }
+  .tutoring-by p {
+    font-size: 1em;
+  }
+  .title h2 {
+    text-align: left;
+  }
 }
 </style>

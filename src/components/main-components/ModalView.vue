@@ -36,7 +36,6 @@ export default {
   left: 20%;
   top: 5%;
   transform: translate(-50%, -50%);
-  padding: 20px;
   background-color: white;
   max-height: 80%;
   overflow: auto;
