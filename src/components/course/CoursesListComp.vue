@@ -261,7 +261,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .no-result {
   padding: 2em;
 }

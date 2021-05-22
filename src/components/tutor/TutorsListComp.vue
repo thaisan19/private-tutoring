@@ -70,7 +70,7 @@
       <div class="is-courses">
         <h1>{{ openedTutorRequest.length }} courses</h1>
       </div>
-      <CoursesListComp :courses="openedTutorRequest" @changeTutorRequest="changeTutorRequest" class="owned-courses" />
+      <OwnedCoursesList :courses="openedTutorRequest" @changeTutorRequest="changeTutorRequest" class="owned-courses" />
     </ModalView>
   </div>
 </template>
@@ -81,7 +81,7 @@ import axios from 'axios'
 import ModalView from '../main-components/ModalView.vue'
 import TutorFullView from './TutorFullView.vue'
 // import TutorRequest from './TutorRequest.vue'
-import CoursesListComp from '../course/CoursesListComp.vue'
+import OwnedCoursesList from '../course/OwnedCoursesList.vue'
 
 export default {
   props: ['tutors'],
@@ -89,7 +89,7 @@ export default {
     ModalView,
     TutorFullView,
     // TutorRequest,
-    CoursesListComp
+    OwnedCoursesList
   },
   data() {
     return {
