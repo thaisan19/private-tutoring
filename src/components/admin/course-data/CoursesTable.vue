@@ -9,12 +9,27 @@
     <div class="table">
       <table>
         <tr>
-          <th v-for="title in tableTitle" :key="title">
-            {{ title }}
+          <th @click="sort('id')">ID &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th @click="sort('name')">Name &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th @click="sort('price')">Price
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th @click="sort('courseLength')">Length
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th>Created By</th>
+          <th>Tutoring Days</th>
+          <th>Tutoring Hours</th>
+          <th @click="sort('createdAt')">Created Date &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
           </th>
           <th colspan="2">Actions</th>
         </tr>
-        <tr v-for="course in sortedCourse" :key="course.id" :course="course">
+        <tr v-for="course in sortedCourses" :key="course.id" :course="course">
           <td @click="openCourse(course)">
             <p>{{ course.id }}</p>
           </td>
@@ -103,25 +118,22 @@ export default {
      currentPage: 1,
      pageSize: 10,
      filter: '',
-     numOfPages: ''
+     numOfPages: '',
+     currentSort: 'id',
+     currentSortDir: 'asc'
    }
  },
  setup() {
-   const tableTitle = ref([
-     'ID',
-     'Name',
-     'Price',
-     'Length',
-     'Created by',
-     'Tutoring Days',
-     'Tutoring Hours',
-     'Created Date'
-
-   ])
-   return { format, tableTitle, openedCourse: ref(null), openedAddCourse: ref(null), openedEditCourse: ref(null) }
+   return { format, openedCourse: ref(null), openedAddCourse: ref(null), openedEditCourse: ref(null) }
   
  },
  methods: {
+    sort(s) {
+      if(s === this.currentSort) {
+        this.currentSortDir = this.currentSortDir === 'asc'?'desc':'asc';
+      }
+      this.currentSort = s;
+    },
     nextPage() {
      if((this.currentPage*this.pageSize) < this.filteredCourse.length) this.currentPage++;
     },
@@ -203,24 +215,44 @@ export default {
     filteredCourse() {
 
       return this.courses.filter((course) => {
-        return course.name.toLowerCase().includes(this.search.toLowerCase().trim()) || course.price.toLowerCase().includes(this.search.toLowerCase().trim()) || course.createBy.toLowerCase().includes(this.search.toLowerCase().trim())
+        return course.name.toLowerCase().includes(this.search.toLowerCase().trim()) || course.price.includes(this.search.trim()) || course.createdBy.toLowerCase().includes(this.search.toLowerCase().trim())
       })
     },
-    sortedCourse() {
-      return this.filteredCourse.filter((row, index) => {
+
+    sortedCourses() {
+      return this.filteredCourse.sort((a, b) => {
+        let modifier = 1;
+        if(this.currentSortDir === 'desc') modifier = -1;
+        if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+        if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+        return 0;
+      }).filter((row, index) => {
         let start = (this.currentPage-1)*this.pageSize;
         let end = this.currentPage*this.pageSize;
         if(index >= start && index < end) return true;
-      }) 
+      })
     },
 
     numOfPages() {
       return Math.ceil(this.courses.length / this.pageSize)
     }
   },
+  watch: {
+    filter() {
+      console.log('Reset to Page1 Due to Filter.');
+      this.currentPage = 1;
+    }
+  }
 }
 </script>
 
 <style>
-
+.asc::after {
+  content: '🔽';
+  display: inline-block;
+}
+.desc::after {
+  content: '🔼';
+  display: inline-block;
+}
 </style>

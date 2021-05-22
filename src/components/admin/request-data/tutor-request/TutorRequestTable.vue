@@ -14,8 +14,32 @@
     <div class="table">
       <table>
         <tr>
-          <th v-for="title in tableTitle" :key="title">
-            {{ title }}
+          <th @click="sort('id')">ID
+            &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th @click="sort('fullName')">Fullname
+            &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th @click="sort('phoneNumber')">Phone Number
+            &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th @click="sort('email')">Email Address
+            &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th @click="sort('monthlyRate')">M.R
+            &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
+          </th>
+          <th>Expertises</th>
+          <th>Tutoring Days</th>
+          <th>Tutoring Hours</th>
+          <th @click="sort('createdAt')">Requested Date
+            &nbsp;
+            <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
           </th>
           <th colspan="2">Actions</th>
         </tr>
@@ -89,24 +113,20 @@ export default {
      currentPage: 1,
      pageSize: 10,
      filter: '',
+     currentSort: 'id',
+     currentSortDir: 'asc'
    }
  },
  setup() {
-   const tableTitle = ref([
-     'ID',
-     'Username',
-     'Phone Number',
-     'Email Address',
-     'M.R',
-     'Expertises',
-     'Tutoring Days',
-     'Tutoring Hours',
-     'Requested Date'
-
-   ])
-   return { format, tableTitle, openedTutor: ref(null) }
+   return { format, openedTutor: ref(null) }
  },
  methods: {
+    sort(s) {
+      if(s === this.currentSort) {
+        this.currentSortDir = this.currentSortDir === 'asc'?'desc':'asc';
+      }
+      this.currentSort = s;
+    },
     nextPage() {
      if((this.currentPage*this.pageSize) < this.filteredTutor.length) this.currentPage++;
     },
@@ -186,12 +206,19 @@ export default {
     },
     
     sortedTutor() {
-      return this.filteredTutor.filter((row, index) => {
+      return this.filteredTutor.sort((a, b) => {
+        let modifier = 1;
+        if(this.currentSortDir === 'desc') modifier = -1;
+        if(a[this.currentSort] < b[this.currentSort]) return -1 * modifier;
+        if(a[this.currentSort] > b[this.currentSort]) return 1 * modifier;
+        return 0;
+      }).filter((row, index) => {
         let start = (this.currentPage-1)*this.pageSize;
         let end = this.currentPage*this.pageSize;
         if(index >= start && index < end) return true;
-      }) 
+      })
     },
+
 
     numOfPages() {
       return Math.ceil(this.allTutors.length / this.pageSize)

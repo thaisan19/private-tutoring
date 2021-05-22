@@ -10,9 +10,9 @@
     	<input type="text" name="search-lable" v-model="search" placeholder="Search by: Courses' Name | Courses' Price | Tutors' Name" :class="{changeInputSticky: scrollPosition > 110}">
   </div>
 	</transition>
-  <div class="courses-list" v-if="filteredCourses.length > 0" :courses="courses">
+  <div class="courses-list" v-if="sortedCourses.length > 0" :courses="courses">
    <ul>
-    <li class="course-list" v-for="course in filteredCourses" :key="course.id">
+    <li class="course-list" v-for="course in sortedCourses" :key="course.id">
 			<div class="course-list-header">
 				<div class="course-tutor-profile">
 					<img :src="`https://private-tutoring-backend.herokuapp.com/${course.ownerProfile[0].path}`">
@@ -67,7 +67,15 @@
 			</div>
     </li>
    </ul>
-   
+   <div class="paginator client-paginator">
+      <button @click="prevPage">
+        <img src="../../assets/icons/left-arrow.svg" alt="left-arrow">
+      </button>
+      <p>Page <strong>{{currentPage}}</strong> total of <strong>{{ numOfPages }}</strong></p>
+      <button mode="btn black" @click="nextPage">
+        <img src="../../assets/icons/right-arrow.svg" alt="right-arrow">
+      </button>
+   </div>
   </div>
 	<div v-else class="no-result">
 		<h1>No course found, please try another title...🙌🍁</h1>
@@ -108,22 +116,30 @@ export default {
     CourseView,
 		CourseRequest,
     EditCourse,
-    ConfirmPopup
+    ConfirmPopup,
+    // Observer
   },
   data() {
     return {
       search: '',
 			searchOn: false,
       userId: '',
-      scrollPosition: null
+      scrollPosition: null,
+      currentPage: 1,
+      pageSize: 12
     }
   },
   setup() {
-
 		return { openedCourse: ref(null), openedCouresRequest: ref(null), openedEditCourse: ref(null) }
   },
   
   methods: {
+    nextPage() {
+     if((this.currentPage*this.pageSize) < this.filteredCourses.length) this.currentPage++;
+    },
+    prevPage() {
+     if(this.currentPage > 1) this.currentPage--;
+    },
     updateScroll() {
       this.scrollPosition = window.scrollY
     },
@@ -215,6 +231,18 @@ export default {
 
       })
     },
+
+    sortedCourses() {
+      return this.filteredCourses.filter((row, index) => {
+        let start = (this.currentPage-1)*this.pageSize;
+        let end = this.currentPage*this.pageSize;
+        if(index >= start && index < end) return true;
+      })
+    },
+    numOfPages() {
+      return Math.ceil(this.courses.length / this.pageSize)
+    },
+
     isLoggedInAsTutor() {
       return this.$store.getters.isAuthenticatedAsTutor;
     },
@@ -227,7 +255,7 @@ export default {
       this.userId = localStorage.getItem('userId')
     }
   },
-  mounted() {
+  async mounted() {
     window.addEventListener('scroll', this.updateScroll);
   }
 }

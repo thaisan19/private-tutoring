@@ -9,10 +9,10 @@
     	<input type="text" name="search-lable" v-model="search" placeholder="Search by: Courses' Name | Price" :class="{changeInputSticky: scrollPosition > 110}">
   </div>
 	</transition>
-  <div class="tutors-list" v-if="filteredTutors.length > 0">
+  <div class="tutors-list" v-if="sortedTutors.length > 0">
     <ul>
       <li 
-        v-for="tutor in filteredTutors" 
+        v-for="tutor in sortedTutors" 
         :key="tutor.id"
         class="tutor-list"
         >
@@ -44,6 +44,15 @@
         </div>
       </li>
     </ul>
+   <div class="paginator client-paginator">
+      <button @click="prevPage">
+        <img src="../../assets/icons/left-arrow.svg" alt="left-arrow">
+      </button>
+      <p>Page <strong>{{currentPage}}</strong> total of <strong>{{ numOfPages }}</strong></p>
+      <button mode="btn black" @click="nextPage">
+        <img src="../../assets/icons/right-arrow.svg" alt="right-arrow">
+      </button>
+   </div>
   </div>
   <div v-else>
     <h1>No searching result, please try again...🙏🌿</h1>
@@ -87,7 +96,9 @@ export default {
       search: '',
       searchOn: false,
       windowWidth: window.innerWidth,
-      scrollPosition: null
+      scrollPosition: null,
+      currentPage: 1,
+      pageSize: 12
     }
   },
   setup() {
@@ -97,6 +108,12 @@ export default {
     }
   },
   methods: {
+    nextPage() {
+     if((this.currentPage*this.pageSize) < this.filteredTutors.length) this.currentPage++;
+    },
+    prevPage() {
+     if(this.currentPage > 1) this.currentPage--;
+    },
     updateScroll() {
       this.scrollPosition = window.scrollY
     },
@@ -155,7 +172,17 @@ export default {
         }
         
       })
-    } 
+    },
+    sortedTutors() {
+      return this.filteredTutors.filter((row, index) => {
+        let start = (this.currentPage-1)*this.pageSize;
+        let end = this.currentPage*this.pageSize;
+        if(index >= start && index < end) return true;
+      })
+    },
+    numOfPages() {
+      return Math.ceil(this.tutors.length / this.pageSize)
+    }, 
   },
   watch: {
     width(newWidth, oldWidth) {
