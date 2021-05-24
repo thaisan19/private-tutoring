@@ -108,7 +108,7 @@ const router = createRouter({
       }
     },
     {
-      path: '/*',
+      path: '/:notFound(.*)',
       name: 'NotFound',
       component: NotFound
     }

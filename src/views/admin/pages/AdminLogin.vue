@@ -9,7 +9,7 @@
      <label for="username">🔑 Password:</label>
      <input type="password" placeholder="Password..." required v-model="password">
      <div class="action-login">
-       <main-button mode="btn black">🚘 Log Me In 🚦</main-button>
+       <main-button mode="btn black">Log Me In 🚦</main-button>
      </div>
    </form>
   </div>
