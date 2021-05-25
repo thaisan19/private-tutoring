@@ -183,11 +183,12 @@ export default {
            this.$router.push('/courses/user')
          }, 2000)
        }
-     }).catch(err =>
-       this.$toast('Could not Add New Course!' + err, {
-         duration: 3000,
-         slotLeft: `💥`,
-         slotRight: `❗❕`,
+     }).catch(err => {
+       if (err.response) {
+         this.$toast(err.response.data.message, {
+         duration: 5000,
+         slotLeft: `🚫`,
+         slotRight: `❓❕`,
          styles: {
            borderRadius: '0px',
            backgroundColor: 'var(--red)',
@@ -201,6 +202,10 @@ export default {
          positionY: 'top',
          disableClick: false
        })
+       } else {
+         console.log('No response')
+       }
+     }
      )
     }
   },

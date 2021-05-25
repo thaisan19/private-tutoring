@@ -19,11 +19,11 @@ export default {
   },
   computed: {
     courses() {
-      return this.$store.getters['courses/courses'];
+      return this.$store.getters['courses/publishedCourses'];
     },
   },
   created() {
-    this.$store.dispatch('courses/getCourses')
+    this.$store.dispatch('courses/getPublishedCourses')
   }
 }
 </script>

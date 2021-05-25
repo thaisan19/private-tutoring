@@ -5,22 +5,22 @@
       <div class="add-course-row01">
         <div class="name">
           <label>📚 Course Name:</label>
-          <input type="text" v-model="name" required>
+          <input type="text" v-model="name" disabled>
         </div>
       </div>
 
       <div class="add-course-row02">
         <div class="name">
           <label>🤗 Tutoring by:</label>
-          <input type="text" v-model="createdBy" required>
+          <input type="text" v-model="createdBy" disabled>
         </div>
         <div class="length">
           <label>⏳ Course Length:</label>
-          <input type="text" v-model="courseLength" required>
+          <input type="text" v-model="courseLength" disabled>
         </div>
         <div class="price">
           <label>💲 Course Price:</label>
-          <input type="number" v-model="price" required>
+          <input type="number" v-model="price" disabled>
         </div>
 
       </div>

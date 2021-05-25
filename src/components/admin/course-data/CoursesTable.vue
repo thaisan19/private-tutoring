@@ -27,7 +27,7 @@
           <th @click="sort('createdAt')">Created Date &nbsp;
             <span :class="[currentSortDir === 'asc' ? 'asc':'desc']"></span>
           </th>
-          <th colspan="2">Actions</th>
+          <th colspan="3">Actions</th>
         </tr>
         <tr v-for="course in sortedCourses" :key="course.id" :course="course">
           <td @click="openCourse(course)">
@@ -53,6 +53,13 @@
           </td>
           <td @click="openCourse(course)">
             <p>{{ format(new Date(course.createdAt), 'MMM do yyyy') }}</p>
+          </td>
+          <td>
+            <div class="action edit">
+              <button @click="toPublished(course)"
+              :disabled="course.published">🤗</button>
+               <span class="tooltiptext">Approve Course</span>
+            </div>
           </td>
           <td>
             <div class="action edit">
@@ -150,6 +157,16 @@ export default {
     },
     openAddCourse() {
       this.openedAddCourse = true
+    },
+    toPublished(course) {
+      console.log(course.id)
+      if (course) {
+        course.published = true
+        this.updatePublished(course)
+      }
+    },
+    updatePublished(course) {
+      axios.put(`http://localhost:5000/api/course/update/${course.id}`, course)
     },
     openEditCourse(course) {
       this.openedEditCourse = course;
