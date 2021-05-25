@@ -155,7 +155,8 @@ export default {
         courseRequirement: this.courseRequirement,
         courseExpectation: this.courseExpectation,
         tutoringDays: this.days,
-        tutoringHours: this.hours
+        tutoringHours: this.hours,
+        delete: false
       }).then(() => {
        this.$toast('Add New Course Successed!', {
          duration: 3000,

@@ -159,14 +159,19 @@ export default {
       this.openedAddCourse = true
     },
     toPublished(course) {
-      console.log(course.id)
       if (course) {
         course.published = true
         this.updatePublished(course)
       }
     },
+    // toDelete(course, event) {
+    //   if (course) {
+    //     course.delete = true
+    //     this.deleteCourse(course, event)
+    //   }
+    // },
     updatePublished(course) {
-      axios.put(`http://localhost:5000/api/course/update/${course.id}`, course)
+      axios.put(`https://private-tutoring-backend.herokuapp.com/api/course/update/${course.id}`, course)
     },
     openEditCourse(course) {
       this.openedEditCourse = course;
@@ -192,7 +197,7 @@ export default {
         target: event.currentTarget,
         message: `Are you sure want to delete course name ${course.name} ❔❗❕⭕`,
         accept: () => {
-         axios.delete(`https://private-tutoring-backend.herokuapp.com/api/course/delete/${course.id}`)
+         axios.put(`https://private-tutoring-backend.herokuapp.com/api/course/update/${course.id}`, {delete: true})
         
          .then(() => {
           this.$toast(course.name + ' has been deleted!', {
@@ -229,9 +234,13 @@ export default {
   },
   computed: {
 
+    notDeleteCourses() {
+      return this.courses.filter((course) => course.delete.toString() === 'false')
+    },
+
     filteredCourse() {
 
-      return this.courses.filter((course) => {
+      return this.notDeleteCourses.filter((course) => {
         return course.name.toLowerCase().includes(this.search.toLowerCase().trim()) || course.price.includes(this.search.trim()) || course.createdBy.toLowerCase().includes(this.search.toLowerCase().trim())
       })
     },

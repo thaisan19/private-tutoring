@@ -104,7 +104,8 @@ export default {
        reqAdd: this.addReq,
        pickedTutoringDays: this.pickedTutoringDays,
        pickedTutoringHours: this.pickedTutoringHours,
-       read: false
+       read: false,
+       delete: false
      }).then(() => {
        this.$toast('Course Request Made! We will get back to you soon 👏', {
          duration: 3000,

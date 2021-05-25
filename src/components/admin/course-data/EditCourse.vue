@@ -177,24 +177,30 @@ export default {
         setTimeout(() =>{
           this.$router.go('/AdminCourse')
         }, 2000);
-     }).catch(err =>
-       this.$toast('Could not Editing!' + err, {
-         duration: 3000,
-         slotLeft: `💥`,
-         slotRight: `❗❕`,
-         styles: {
-           borderRadius: '0px',
-           backgroundColor: 'var(--red)',
-           color: '#fff',
-           borderColor: 'var(--black)',
-           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
-           border: '3px solid var(--black)'
-         },
-         class: 'local-class',
-         positionX: 'center',
-         positionY: 'top',
-         disableClick: false
-       })
+     }).catch(err => {
+       if (err.response) {
+         console.log(err.response.data.message)
+       } else {
+         console.log("No respionse")
+       }
+     }
+      //  this.$toast('Could not Editing!' + err, {
+      //    duration: 3000,
+      //    slotLeft: `💥`,
+      //    slotRight: `❗❕`,
+      //    styles: {
+      //      borderRadius: '0px',
+      //      backgroundColor: 'var(--red)',
+      //      color: '#fff',
+      //      borderColor: 'var(--black)',
+      //      boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
+      //      border: '3px solid var(--black)'
+      //    },
+      //    class: 'local-class',
+      //    positionX: 'center',
+      //    positionY: 'top',
+      //    disableClick: false
+      //  })
      )
    }
  }

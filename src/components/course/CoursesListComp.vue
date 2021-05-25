@@ -183,7 +183,7 @@ export default {
         target: event.currentTarget,
         message: `Are you sure want to delete course name ${course.name} ❔❗❕⭕`,
         accept: () => {
-         axios.delete(`https://private-tutoring-backend.herokuapp.com/api/course/delete/${course.id}`)
+         axios.put(`https://private-tutoring-backend.herokuapp.com/api/course/update/${course.id}`, {delete: true})
         
          .then(() => {
           this.$toast(course.name + ' has been deleted!', {
@@ -224,8 +224,12 @@ export default {
       })
     },
 
+    notDeleteCourses() {
+      return this.courses.filter((course) => course.delete.toString() === 'false')
+    },
+
     filteredCourses() {
-      return this.courses.filter((course) => {
+      return this.notDeleteCourses.filter((course) => {
         
         return course.name.toLowerCase().includes(this.search.toLowerCase().trim()) || course.createdBy.toLowerCase().includes(this.search.toLowerCase().trim()) || course.price.includes(this.search.toLowerCase().trim())
 

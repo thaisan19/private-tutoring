@@ -186,7 +186,7 @@ export default {
         target: event.currentTarget,
         message: `Are you sure want to delete tutor name ${tutor.fullName} ❔❗❕⭕`,
         accept: () => {
-         axios.delete(`https://private-tutoring-backend.herokuapp.com/api/tutor/delete/${tutor.id}`)
+         axios.put(`https://private-tutoring-backend.herokuapp.com/api/admin/delete-to-true/${tutor.id}`)
         
          .then(() => {
           this.$toast(tutor.fullName + ' has been deleted!', {
@@ -223,8 +223,12 @@ export default {
   },
   computed: {
 
+    notDelelteTutor() {
+      return this.tutors.filter((tutor) => tutor.delete.toString() === 'false')
+    },
+
     filteredTutor() {
-      return this.tutors.filter((tutor) => {
+      return this.notDelelteTutor.filter((tutor) => {
         
         const expLen = tutor.expertises.length;
         for (const i = 0; i < expLen; i++) {

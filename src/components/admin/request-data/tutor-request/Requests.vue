@@ -148,7 +148,7 @@ export default {
         target: event.currentTarget,
         message: `Are you sure want to delete request id: ${request._id} ❔❗❕⭕`,
         accept: () => {
-         axios.delete(`https://private-tutoring-backend.herokuapp.com/api/request/delete/${request._id}`)
+         axios.put(`https://private-tutoring-backend.herokuapp.com/api/request/update/${request._id}`, {delete: true})
         
          .then(() => {
           this.$toast(request._id + ' has been deleted!', {
@@ -188,8 +188,12 @@ export default {
   },
   computed: {
 
+    notDeleteRequests() {
+      return this.requests.filter((request) => request.delete.toString() === 'false')
+    },
+
     filteredRequests() {
-      return this.requests.filter((request) => {
+      return this.notDeleteRequests.filter((request) => {
 
           return request.title.toLowerCase().includes(this.search.toLowerCase().trim())
 

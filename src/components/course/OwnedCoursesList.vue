@@ -145,12 +145,16 @@ export default {
   computed: {
 
     filteredCourses() {
-      return this.courses.filter((course) => {
+      return this.getOwnedPublishedCourses.filter((course) => {
         
         return course.name.toLowerCase().includes(this.search.toLowerCase().trim()) || course.createdBy.toLowerCase().includes(this.search.toLowerCase().trim()) || course.price.includes(this.search.toLowerCase().trim())
 
       })
     },
+
+    getOwnedPublishedCourses() {
+      return this.courses.filter((course) => course.published.toString() === 'true' && course.delete.toString() === 'false')
+    }
   },
   async mounted() {
     window.addEventListener('scroll', this.updateScroll);

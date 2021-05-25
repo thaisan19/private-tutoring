@@ -251,6 +251,7 @@ export default {
       formData.append("aboutMe", this.aboutMe)
       formData.append("eduBackground", this.eduBackground)
       formData.append("achievement", this.achievement)
+      formData.append("delete", false)
 
       for (var i = 0; i < this.expertises.length; i++) {
         formData.append("expertises", this.expertises[i])

@@ -162,8 +162,11 @@ export default {
         return true
       }
     },
+    notDeleteTutors() {
+      return this.tutors.filter((tutor) => tutor.delete.toString() === 'false')
+    },
     filteredTutors() {
-      return this.tutors.filter((tutor) => {
+      return this.notDeleteTutors.filter((tutor) => {
         
         const expLen = tutor.expertises.length;
         for (const i = 0; i < expLen; i++) {

@@ -5,13 +5,31 @@
    </h1>
    <form @submit.prevent="handleLogin">
      <label for="email">📨 Email:</label>
-     <input type="email" placeholder="Enter your email..." required v-model="email">
+     <input type="email" placeholder="Enter your email..." required v-model="email" :disabled="showForgetInput">
      <label for="username">🔑 Password:</label>
-     <input type="password" placeholder="Password..." required v-model="password">
+     <input type="password" placeholder="Password..." required v-model="password" :disabled="showForgetInput">
+     <div class="forget-password" v-if="showForgetPassword"
+     @click="showForgetDiv">
+       <p>Forgot your password ❕❓</p>
+     </div>
      <div class="action-login">
-       <main-button mode="btn black" class="login-button">Log Me In 🚦</main-button>
+       <main-button mode="btn black" class="login-button"
+       v-if="isLoginButton">
+         Log Me In 🚦
+       </main-button>
      </div>
    </form>
+   <div class="forget-input"
+    v-if="showForgetPassword && showForgetInput">
+    <label for="email">📨 Enter your account email:</label>
+    <input type="email" placeholder="Enter your email..." required v-model="forgetEmail">
+    <div class="action-login">
+    <main-button mode="btn black" class="login-button"
+       @click="handleForgetPassword">
+         Send Forgot Password 🚀
+    </main-button>
+    </div>      
+    </div>
   </div>
 </template>
 
@@ -23,7 +41,11 @@ export default {
   data() {
     return {
       email: '',
-      password: ''
+      password: '',
+      showForgetPassword: false,
+      forgetEmail: '',
+      showForgetInput: false,
+      isLoginButton: true
     }
   },
   methods: {
@@ -56,7 +78,7 @@ export default {
           this.$router.replace('/')
         }, 2000)
       } catch (err) {
-        console.log(err.message || 'Could not log tuto in!')
+        this.showForgetPassword = true
         this.$toast('Could not log tutor in 🙏', {
          duration: 3000,
          slotLeft: `🎉`,
@@ -75,27 +97,55 @@ export default {
          disableClick: false
        })
       }
-
-      // const response = await fetch('http://localhost:5000/api/tutor/login', {
-      //   method: "POST",
-      //   headers: {
-      //     "Content-Type": "application/json",
-      //   },
-      //   body: JSON.stringify({
-      //     email: this.email,
-      //     password: this.password
-      //   })
-      // });
-      // const resData = await response.json();
-      // console.log(resData)
+    },
+    async handleForgetPassword() {
+      await axios.post('https://private-tutoring-backend.herokuapp.com/api/tutor/forgot-password/', {email: this.forgetEmail})
+      .then((res) => {
+        this.$toast("Please check your email for a new account password 👏", {
+         duration: 5000,
+         slotLeft: `🎉`,
+         slotRight: `🎊`,
+         styles: {
+           borderRadius: '0px',
+           backgroundColor: 'var(--blue)',
+           color: '#fff',
+           borderColor: 'var(--black)',
+           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
+           border: '3px solid var(--black)'
+         },
+         class: 'local-class',
+         positionX: 'center',
+         positionY: 'top',
+         disableClick: false
+       })
+      })
+      .catch(err => {
+        this.$toast("Could not send forgot password email ❕🙏", {
+         duration: 3000,
+         slotLeft: `🚫`,
+         slotRight: `❓❗❕`,
+         styles: {
+           borderRadius: '0px',
+           backgroundColor: 'var(--red)',
+           color: '#fff',
+           borderColor: 'var(--black)',
+           boxShadow: '-5px 5px 0px rgba(0,0,0,0.1)',
+           border: '3px solid var(--black)'
+         },
+         class: 'local-class',
+         positionX: 'center',
+         positionY: 'top',
+         disableClick: false
+       })
+      })
+      this.showForgetInput = false
+      this.isLoginButton = true
+    },
+    showForgetDiv() {
+      this.showForgetInput = !this.showForgetInput
+      this.isLoginButton = !this.isLoginButton
     }
   },
-  // async mounted() {
-  //   const getTutor = await axios.get('http://localhost:3000/api/tutor/')
-  //   .then((getTutor) => {
-  //     console.log(getTutor.data.data[0])
-  //   })
-  // }
 }
 </script>
 
@@ -141,6 +191,20 @@ export default {
   }
   .action-login {
     text-align: center;
+  }
+  .forget-password {
+    margin-top: .5em;
+    font-weight: 600;
+    font-style: italic;
+    cursor: pointer;
+    position: relative;
+    transition: .3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  }
+  .forget-password:hover {
+    letter-spacing: .1em;
+  }
+  .forget-input {
+    margin-top: 1em;
   }
 
   @media only screen and (min-device-width : 200px) and (max-device-width : 480px) {
