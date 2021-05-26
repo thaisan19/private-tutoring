@@ -75,8 +75,8 @@ export default {
          disableClick: false
        })
         setTimeout(() =>{
+          this.$router.go('')
           this.$router.replace('/')
-          this.$router.go('/')
         }, 2000)
       } catch (err) {
         this.showForgetPassword = true
