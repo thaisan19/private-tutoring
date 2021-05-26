@@ -108,6 +108,9 @@ export default {
 </script>
 
 <style scoped>
+.update-password-view {
+  padding: 2em;
+}
   .update-password-form .input {
     display: flex;
     flex-direction: column;
