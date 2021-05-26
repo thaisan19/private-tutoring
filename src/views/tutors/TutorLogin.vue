@@ -76,8 +76,10 @@ export default {
        })
         setTimeout(() =>{
           this.$router.go('')
-          this.$router.replace('/')
         }, 2000)
+        setTimeout(() =>{
+          this.$router.replace('/')
+        })
       } catch (err) {
         this.showForgetPassword = true
         this.$toast('Could not log tutor in 🙏', {
