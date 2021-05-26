@@ -76,6 +76,7 @@ export default {
        })
         setTimeout(() =>{
           this.$router.replace('/')
+          this.$router.go('/')
         }, 2000)
       } catch (err) {
         this.showForgetPassword = true
