@@ -95,7 +95,7 @@ export default {
     const router = useRouter()
 
     const handleDayKeydown = () => {
-      if (!days.value.includes(day.value)) {
+      if (!days.value.includes(day.value) && day.value.length) {
         day.vlaue = day.value.replace(/\s/g, '')
         days.value.push(day.value)
       }
@@ -109,7 +109,7 @@ export default {
     }
 
     const handleHourKeydown = () => {
-      if (!hours.value.includes(hour.value)) {
+      if (!hours.value.includes(hour.value) && hour.value.length) {
         hour.vlaue = hour.value.replace(/\s/g, '')
         hours.value.push(hour.value)
       }
