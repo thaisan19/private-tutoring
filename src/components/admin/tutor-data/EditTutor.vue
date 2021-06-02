@@ -229,7 +229,7 @@ export default {
   }
  },
  async created() {
-   await axios.get('https://private-tutoring-backend.herokuapp.com/api/admin/find-tutor/' + this.tutor._id)
+   await axios.get('https://www.thementor-privatetutoring.me/api/admin/find-tutor/' + this.tutor._id)
     .then((res) => {
       console.log(res.data.profile[0])
       this.fullName = res.data.fullName,
@@ -281,7 +281,7 @@ export default {
         formData.append("tutoringHours", this.hours[i])
       }
 
-     await axios.put(`https://private-tutoring-backend.herokuapp.com/api/admin/update/${this.tutor._id}`, formData, {
+     await axios.put(`https://www.thementor-privatetutoring.me/api/admin/update/${this.tutor._id}`, formData, {
      }).then(() => {
        this.$toast(this.fullName + ' Edit Successed!', {
          duration: 3000,

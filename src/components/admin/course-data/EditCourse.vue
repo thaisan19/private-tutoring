@@ -119,7 +119,7 @@ export default {
  },
  data() {
   return {
-   uri: 'https://private-tutoring-backend.herokuapp.com/api/course/',
+   uri: 'https://www.thementor-privatetutoring.me/api/course/',
    name: '',
    createdBy: '',
    courseLength: '',

@@ -26,7 +26,7 @@ export default {
   async mounted() {
     this.userId = localStorage.getItem('userId')
 
-    await axios.get(`https://private-tutoring-backend.herokuapp.com/api/tutor/find-tutor/${this.userId}`)
+    await axios.get(`https://www.thementor-privatetutoring.me/api/tutor/find-tutor/${this.userId}`)
     .then((res) => this.activeTutor = res.data)
   }
 }

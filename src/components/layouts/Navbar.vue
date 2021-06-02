@@ -42,7 +42,7 @@
         <img src="../../assets/illustration/tutor-male.svg"> 
       </div>
       <div v-if="activeTutor && activeTutor.profile">
-        <img :src="`https://private-tutoring-backend.herokuapp.com/${activeTutor.profile[0].path}`"> 
+        <img :src="`https://www.thementor-privatetutoring.me/${activeTutor.profile[0].path}`"> 
       </div>
       <div v-if="activeTutor && !activeTutor.profile && activeTutor.gender == '👩 Female'">
         <img src="../../assets/illustration/tutor-female.svg"> 
@@ -197,7 +197,7 @@ export default {
     if(localStorage.getItem('userId') !== null) {
       this.userId = localStorage.getItem('userId')
 
-      axios.get(`https://private-tutoring-backend.herokuapp.com/api/tutor/find-tutor/${this.userId}`)
+      axios.get(`https://www.thementor-privatetutoring.me/api/tutor/find-tutor/${this.userId}`)
         .then((res) => this.activeTutor = res.data)
     }
   },

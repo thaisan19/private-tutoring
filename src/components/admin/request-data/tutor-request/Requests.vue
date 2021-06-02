@@ -148,7 +148,7 @@ export default {
         target: event.currentTarget,
         message: `Are you sure want to delete request id: ${request._id} ❔❗❕⭕`,
         accept: () => {
-         axios.put(`https://private-tutoring-backend.herokuapp.com/api/request/update/${request._id}`, {delete: true})
+         axios.put(`https://www.thementor-privatetutoring.me/api/request/update/${request._id}`, {delete: true})
         
          .then(() => {
           this.$toast(request._id + ' has been deleted!', {
@@ -183,7 +183,7 @@ export default {
         
     },
     updateRequest(request) {
-      axios.put(`https://private-tutoring-backend.herokuapp.com/api/request/update/${request._id}`, request)
+      axios.put(`https://www.thementor-privatetutoring.me/api/request/update/${request._id}`, request)
     }
   },
   computed: {

@@ -102,7 +102,7 @@ export default {
       }
     },
     async handleForgetPassword() {
-      await axios.post('https://private-tutoring-backend.herokuapp.com/api/tutor/forgot-password/', {email: this.forgetEmail})
+      await axios.post('https://www.thementor-privatetutoring.me/api/tutor/forgot-password/', {email: this.forgetEmail})
       .then((res) => {
         this.$toast("Please check your email for a new account password 👏", {
          duration: 5000,

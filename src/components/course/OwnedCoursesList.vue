@@ -14,7 +14,7 @@
     <li class="course-list" v-for="course in filteredCourses" :key="course.id">
 			<div class="course-list-header">
 				<div class="course-tutor-profile">
-					<img :src="`https://private-tutoring-backend.herokuapp.com/${course.ownerProfile[0].path}`">
+					<img :src="`https://www.thementor-privatetutoring.me/${course.ownerProfile[0].path}`">
 					<h3>{{ course.createdBy }}</h3>
 				</div>
 				<div class="course-price">

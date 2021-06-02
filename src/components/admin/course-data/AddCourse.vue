@@ -145,7 +145,7 @@ export default {
   },
   methods: {
     async handleAddCourse() {
-      await axios.post('https://private-tutoring-backend.herokuapp.com/api/course/create', {
+      await axios.post('https://www.thementor-privatetutoring.me/api/course/create', {
         name: this.name,
         createdBy: this.createdBy,
         courseLength: this.courseLength,

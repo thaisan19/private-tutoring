@@ -15,7 +15,7 @@
     <li class="course-list" v-for="course in sortedCourses" :key="course.id">
 			<div class="course-list-header">
 				<div class="course-tutor-profile">
-					<img :src="`https://private-tutoring-backend.herokuapp.com/${course.ownerProfile[0].path}`">
+					<img :src="`https://www.thementor-privatetutoring.me/${course.ownerProfile[0].path}`">
 					<h3>{{ course.createdBy }}</h3>
 				</div>
 				<div class="course-price">
@@ -183,7 +183,7 @@ export default {
         target: event.currentTarget,
         message: `Are you sure want to delete course name ${course.name} ❔❗❕⭕`,
         accept: () => {
-         axios.put(`https://private-tutoring-backend.herokuapp.com/api/course/update/${course.id}`, {delete: true})
+         axios.put(`https://www.thementor-privatetutoring.me/api/course/update/${course.id}`, {delete: true})
         
          .then(() => {
           this.$toast(course.name + ' has been deleted!', {

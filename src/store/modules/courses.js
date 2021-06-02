@@ -10,13 +10,13 @@ export default {
  },
  actions: {
   getCourses(context)  {
-   axios.get('https://private-tutoring-backend.herokuapp.com/api/course/all')
+   axios.get('https://www.thementor-privatetutoring.me/api/course/all')
    .then(res => {
     context.commit('SET_COURSES', res.data)
    })
   },
   getPublishedCourses(context) {
-   axios.get('https://private-tutoring-backend.herokuapp.com/api/course/ispublished')
+   axios.get('https://www.thementor-privatetutoring.me/api/course/ispublished')
    .then(res => {
     context.commit('SET_PUBLISHED_COURSES', res.data)
    })

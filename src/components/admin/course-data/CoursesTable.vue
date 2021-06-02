@@ -171,7 +171,7 @@ export default {
     //   }
     // },
     updatePublished(course) {
-      axios.put(`https://private-tutoring-backend.herokuapp.com/api/course/update/${course.id}`, course)
+      axios.put(`https://www.thementor-privatetutoring.me/api/course/update/${course.id}`, course)
     },
     openEditCourse(course) {
       this.openedEditCourse = course;
@@ -197,7 +197,7 @@ export default {
         target: event.currentTarget,
         message: `Are you sure want to delete course name ${course.name} ❔❗❕⭕`,
         accept: () => {
-         axios.put(`https://private-tutoring-backend.herokuapp.com/api/course/update/${course.id}`, {delete: true})
+         axios.put(`https://www.thementor-privatetutoring.me/api/course/update/${course.id}`, {delete: true})
         
          .then(() => {
           this.$toast(course.name + ' has been deleted!', {

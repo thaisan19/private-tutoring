@@ -13,7 +13,7 @@ export default {
  },
  actions: {
   async loginTutor(context, payload) {
-    const response = await fetch('https://private-tutoring-backend.herokuapp.com/api/tutor/login-tutor', {
+    const response = await fetch('https://www.thementor-privatetutoring.me/api/tutor/login-tutor', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -54,7 +54,7 @@ export default {
     });
   },
   async loginAdmin(context, payload) {
-    const response = await fetch('https://private-tutoring-backend.herokuapp.com/api/admin/login', {
+    const response = await fetch('https://www.thementor-privatetutoring.me/api/admin/login', {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

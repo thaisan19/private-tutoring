@@ -186,7 +186,7 @@ export default {
         target: event.currentTarget,
         message: `Are you sure want to delete tutor name ${tutor.fullName} ❔❗❕⭕`,
         accept: () => {
-         axios.put(`https://private-tutoring-backend.herokuapp.com/api/admin/delete-to-true/${tutor.id}`)
+         axios.put(`https://www.thementor-privatetutoring.me/api/admin/delete-to-true/${tutor.id}`)
         
          .then(() => {
           this.$toast(tutor.fullName + ' has been deleted!', {
